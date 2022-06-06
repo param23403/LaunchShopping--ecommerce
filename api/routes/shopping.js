@@ -4,7 +4,7 @@ var fetch = require("node-fetch");
 const db = require("./firebase");
 
 const {
-  setDoc, getDocs,
+  setDoc, getDocs, collection, doc
 } = require("firebase/firestore");
 const { async } = require("@firebase/util");
 
@@ -12,10 +12,6 @@ router.post("/userCreation", async (req, res, next) => {
     await setDoc(doc(db, "Users", req.query.id), {
         username: req.query.id,
         password: req.body.password,
-        birthday: req.body.birthday,
-        creditCardNumber: req.body.creditCardNumber,
-        address: req.body.address,
-        phoneNumber: req.body.phoneNumber
     })
 
 });
