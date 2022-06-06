@@ -1,20 +1,20 @@
-import './App.css';
-import Error from './components/Error.js';
-import { Routes, Route } from 'react-router-dom';
-import Home from './components/home/Home.js';
+import {Route, Routes} from 'react-router-dom'
+import Landing from './components/Landing/Landing';
+import Cart from './components/Cart/Cart';
+import Account from './components/Account/Account';
+import Error from './components/Error';
 import React from 'react';
-
-document.title = "shopCrunch";
-document.body.style = 'background: #D6FFD6;';
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-      <Route path="/" element={<Home />}/>
+    <>
+    <Routes>
+      <Route path="/" element={<Landing />}/>
+      <Route path="/cart" element={<Cart />}/>
+      <Route path="/account" element={<Account />}/>
       <Route path="*" element={<Error />}/>
     </Routes>
-    </div>
+    </>
   );
 }
 
