@@ -1,4 +1,4 @@
-import Navbar from './Navbar.js'
+import Navbar from '../Navbar/Navbar.js'
 const Landing=()=>{
     return(
         <>
