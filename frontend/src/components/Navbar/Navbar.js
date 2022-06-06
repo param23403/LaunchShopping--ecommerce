@@ -27,22 +27,28 @@ const Navbar = (props) => {
     function logoutOnClick(){
       navigate("/")
     }
-   
+    const linkStyle = {
+        margin: "1rem",
+        textDecoration: "none",
+        color: 'black'
+    };
     
     return (
+        <>
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar style={{backgroundColor: "#5BAFFF"}}>
-                    <Typography variant="h4" component="div">
-                        Cartify
+                    <Typography variant="h3" component="div"style={linkStyle}>
+                        ShopCrunch
                     </Typography>
-                        <Button color="inherit"  onClick={homeOnClick}>Home</Button>
-                        <Button color="inherit" onClick={cartOnClick}>Cart</Button>
-                        <Button color="inherit" onClick={accountOnClick}>Account</Button>
-                        <Button color="inherit" onClick={logoutOnClick}>Logout</Button>
+                        <Link to='homepage'style={linkStyle}><Button color="inherit"  onClick={homeOnClick}>Home</Button></Link>
+                        <Link to='cart'style={linkStyle}><Button color="inherit" onClick={cartOnClick}>Cart</Button></Link>
+                        <Link to ='account'style={linkStyle}><Button color="inherit" onClick={accountOnClick}>Account</Button></Link>
+                        <Link to='/'style={linkStyle}><Button color="inherit" onClick={logoutOnClick}>Logout</Button></Link>
                 </Toolbar>
             </AppBar>
         </Box>
+        </>
     );
 
 }
