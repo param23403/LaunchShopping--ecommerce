@@ -1,10 +1,25 @@
-import './App.css';
-
+import Navbar from './components/Navbar/Navbar'
+import {Route,Routes} from 'react-router-dom'
+import Homepage from './components/Homepage/Homepage';
+import Landing from './components/Landing/Landing';
+import Cart from './components/Cart/Cart';
+import Account from './components/Account/Account';
+import Error from './components/Error/Error';
+import Login from './components/Login/Login'
+import Signup from './components/signup/Signup'
 function App() {
   return (
-    <div className="App">
-        
-    </div>
+    <>
+    <Routes>
+      <Route path="/" element={<Landing />}/>
+      <Route path="/home" element={<Homepage />}/>
+      <Route path="/cart" element={<Cart />}/>
+      <Route path="/account" element={<Account />}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/signup" element={<Signup/>}/>
+      <Route path="*" element={<Error />}/>
+    </Routes>
+    </>
   );
 }
 

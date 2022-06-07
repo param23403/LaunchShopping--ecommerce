@@ -17,14 +17,13 @@ router.post("/userCreation", async (req, res, next) => {
         defaultCreditCard: req.body.defaultCreditCard,
         phoneNumber: req.body.phoneNumber,
     })
-
 });
 
 router.get("/usernames", async (req, res, next) => {
     const users = [];
     const docs = await getDocs(collection(db, "Users"));
     docs.forEach((user) =>
-        users.push({ id: user.id })
+        users.push({ id: user.id, ...user.data() })
     );
     res.json({ result: users });
 });
