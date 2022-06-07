@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import './Navbar.css'
-
+import logo from '../logow.png'
 const Navbar = (props) => {
      let navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const Navbar = (props) => {
     const linkStyle = {
         margin: "1rem",
         textDecoration: "none",
-        color: 'black'
+        color: 'white'
     };
     
     return (
@@ -38,9 +38,7 @@ const Navbar = (props) => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar style={{backgroundColor: "#5BAFFF"}}>
-                    <Typography variant="h3" component="div"style={linkStyle}>
-                        ShopCrunch
-                    </Typography>
+                <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
                         <Link to='/shopping'style={linkStyle}><Button color="inherit"  onClick={shoppingOnClick}>Shop</Button></Link>
                         <Link to='/cart'style={linkStyle}><Button color="inherit" onClick={cartOnClick}>Cart</Button></Link>
                         <Link to ='/account'style={linkStyle}><Button color="inherit" onClick={accountOnClick}>Account</Button></Link>
