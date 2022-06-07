@@ -2,6 +2,7 @@ import { Button, Grid, TextField, Typography, Card } from "@mui/material";
 import { useRef, useState } from "react";
 import Backdrop from "./Backdrop";
 import Modal from "./Modal";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -11,6 +12,7 @@ function Signup() {
   const textFieldRefAddress = useRef(null);
   const textFieldRefPhoneNumber = useRef(null);
   const textFieldRefCreditCard = useRef(null);
+  let navigate = useNavigate();
 
   const createAccount = () => {
     fetch("http://localhost:9000/shopping/usernames")
@@ -39,6 +41,7 @@ function Signup() {
           }
         ).then((res) => console.log(res.json()));
       });
+      navigate('/shopping');
   };
 
   const closeHandler = () => {
