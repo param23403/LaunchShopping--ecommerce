@@ -58,7 +58,9 @@ function Signup() {
           <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar style={{ backgroundColor: "#5BAFFF" }}>
-          <img src={logo} onClick={landonclick} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
+            <Button onClick={landonclick}>
+              <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
+            </Button>          
           </Toolbar>
         </AppBar>
       </Box>

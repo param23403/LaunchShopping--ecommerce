@@ -43,25 +43,25 @@ const Navbar = (props) => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar style={{backgroundColor: "#5BAFFF"}}>
-                <img src={logo} onClick={landonclick} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
-                        <Link to='/shopping'style={linkStyle}>
-                            <Button color="inherit" style={{backgroundColor: isPage[0] ? "#1F73C3" : "#5BAFFF"}} onClick={shoppingOnClick}>Shop</Button>
-                        </Link>
-                        <Link to='/cart'style={linkStyle}>
-                            <Button color="inherit" style={{backgroundColor: isPage[1] ? "#1F73C3" : "#5BAFFF"}} onClick={cartOnClick}>Cart</Button>
-                        </Link>
-                        <Link to='/account'style={linkStyle}>
-                            <Button color="inherit" style={{backgroundColor: isPage[2] ? "#1F73C3" : "#5BAFFF"}} onClick={accountOnClick}>Account</Button>
-                        </Link>
-                        <Link to='/'style={linkStyle}>
-                            <Button color="inherit" onClick={logoutOnClick}>Logout</Button>
-                        </Link>
+                    <Button onClick={landonclick}>
+                        <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
+                    </Button>                        
+                    <Link to='/shopping'style={linkStyle}>
+                        <Button color="inherit" style={{backgroundColor: isPage[0] ? "#1F73C3" : "#5BAFFF"}} onClick={shoppingOnClick}>Shop</Button>
+                    </Link>
+                    <Link to='/cart'style={linkStyle}>
+                        <Button color="inherit" style={{backgroundColor: isPage[1] ? "#1F73C3" : "#5BAFFF"}} onClick={cartOnClick}>Cart</Button>
+                    </Link>
+                    <Link to='/account'style={linkStyle}>
+                        <Button color="inherit" style={{backgroundColor: isPage[2] ? "#1F73C3" : "#5BAFFF"}} onClick={accountOnClick}>Account</Button>
+                    </Link>
+                    <Link to='/'style={linkStyle}>
+                        <Button color="inherit" onClick={logoutOnClick}>Logout</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box>
         </>
     );
-
 }
-// style={{backgroundColor: ispage[0] ? 'primary' : "inherit"}}
 export default Navbar;
