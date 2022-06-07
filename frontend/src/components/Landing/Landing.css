@@ -1,0 +1,18 @@
+body {
+    font-family: "open sans";
+    min-height: 100vh;
+    background-image: linear-gradient(125deg,#93e393,#5BAFFF,#2980B9,#93e393);  background-size: 400%;
+    animation: bganimation 15s infinite;
+}
+  
+@keyframes bganimation {
+    0%{
+        background-position: 0% 100%;
+    }
+    50%{
+        background-position: 100% 100%;
+    }
+    100%{
+        background-position: 0% 100%;
+    }
+}

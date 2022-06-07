@@ -3,6 +3,7 @@ import React from 'react';
 import logo2 from "./logo2.png";
 import background from "./background_overlay.jpg";
 import { Link } from "react-router-dom";
+import './Landing.css';
 
 const Landing = () => {
     const linkStyle = {
@@ -22,7 +23,7 @@ const Landing = () => {
     }    
 
     return(
-        <div id="root" style={imageOverlay}>
+        <body>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', borderRadius: 1}}>
                     <img src={logo2} style={{ maxWidth: 200, maxHeight: 50, padding: 15}} alt="logo"></img>
                     <Box>
@@ -36,14 +37,14 @@ const Landing = () => {
             </Box>
             <Box sx={{ margin:"auto", marginTop: "25vh", display:"flex", justifyContent:"center", alignItems:"center", maxHeight:"40vh", 
                 border: 4, borderColor: 'white', maxWidth:"30vw", flexDirection:"column"}}>
-                <Typography style={{ fontSize: 45, color: 'white', fontFamily: 'georgia'}}>Online Shopping</Typography>
-                <Typography style={{ fontSize: 45, color: 'white', fontFamily: 'georgia'}}> Done Right.</Typography>
+                <Typography style={{ fontSize: 45, color: 'white', fontFamily: 'open sans'}}>Online Shopping</Typography>
+                <Typography style={{ fontSize: 45, color: 'white', fontFamily: 'open sans'}}> Done Right.</Typography>
             <Link to="/shopping" style={{textDecoration: "none"}}>
                 <Button variant='contained' size='large' style={{ margin: "1rem", borderRadius: 30, 
                     fontFamily: 'georgia', fontSize: 20, textTransform: 'none' }}>Shop Now</Button>
             </Link>
             </Box>
-        </div>
+        </body>
     ) 
 };
     
