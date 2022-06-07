@@ -24,7 +24,7 @@ const Landing = () => {
     return(
         <div id="root" style={imageOverlay}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', borderRadius: 1}}>
-            <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
+            <img src={logo} style={{ maxWidth: 225, maxHeight: 50, padding: 15}} alt="logo"></img>
                     <Box>
                         <Link to="/login" style={{textDecoration: "none"}}>
                             <Button variant='contained' style={linkStyle}>Login</Button>
