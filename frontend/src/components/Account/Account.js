@@ -9,20 +9,13 @@ import { ListItem, Typography } from '@mui/material';
 import { common } from "@mui/material/colors";
 import "./Account.css"
 import Navbar from "../Navbar/Navbar";
-import db from "./firebase";
 
 function Account(){
     const[allInfo,setAllInfo]=useState([]);
     const [user, setUser] = useState('')
 
+    const db=require(".routes/firebase")
 
-
-    function getUser(e){
-        e.preventDefault();
-        db.collection('Users').doc("Survivrr").get()
-        .then(snapshot => setUser(snapshot.data()))
-
-    }
     return(
         <>
         <Navbar ispage={[true, false, false]}/>
