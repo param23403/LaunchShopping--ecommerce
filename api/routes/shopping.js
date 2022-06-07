@@ -12,6 +12,10 @@ router.post("/userCreation", async (req, res, next) => {
     await setDoc(doc(db, "Users", req.query.id), {
         username: req.query.id,
         password: req.body.password,
+        birthday: req.body.birthday,
+        defaultAddress: req.body.defaultAddress,
+        defaultCreditCard: req.body.defaultCreditCard,
+        phoneNumber: req.body.phoneNumber,
     })
 
 });

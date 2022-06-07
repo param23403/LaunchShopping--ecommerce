@@ -1,12 +1,16 @@
-import { Button, Box, TextField } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { Button, Grid, TextField, Typography, Card } from "@mui/material";
+import { useRef, useState } from "react";
 import Backdrop from "./Backdrop";
 import Modal from "./Modal";
 
 function Signup() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
   const textFieldRefUsername = useRef(null);
   const textFieldRefPassword = useRef(null);
+  const textFieldRefAddress = useRef(null);
+  const textFieldRefPhoneNumber = useRef(null);
+  const textFieldRefCreditCard = useRef(null);
 
   const createAccount = () => {
     fetch("http://localhost:9000/shopping/usernames")
@@ -27,6 +31,10 @@ function Signup() {
             body: JSON.stringify({
               username: textFieldRefUsername.current.value,
               password: textFieldRefPassword.current.value,
+              birthday: startDate,
+              defaultAddress: textFieldRefAddress.current.value,
+              defaultCreditCard: textFieldRefCreditCard.current.value,
+              phoneNumber: textFieldRefPhoneNumber.current.value,
             }),
           }
         ).then((res) => console.log(res.json()));
@@ -38,28 +46,81 @@ function Signup() {
   };
 
   return (
-    <Box autoComplete="off" component="form">
-      <TextField
-        required
-        id="outlined-required"
-        label="username"
-        defaultValue="Username"
-        inputRef={textFieldRefUsername}
-        sx={{ m: 1, width: "25ch" }}
-      ></TextField>
-      <TextField
-        required
-        id="outlined-password-input-required"
-        label="password"
-        defaultValue="Password"
-        type="password"
-        inputRef={textFieldRefPassword}
-        sx={{ m: 1, width: "25ch" }}
-      ></TextField>
-      <Button onClick={createAccount}>Create Account</Button>
-      {modalIsOpen && <Modal onClick={closeHandler} />}
-      {modalIsOpen && <Backdrop onClick={closeHandler} />}
-    </Box>
+    <Card
+      sx={{
+        marginTop: "5%",
+        marginLeft: "33%",
+        marginRight: "33%",
+        paddingBottom: "1%",
+        paddingTop: "0.5%",
+        boxShadow: 7,
+        borderRadius: 2,
+        
+      }}
+    >
+      <Grid container justifyContent='center' autoComplete="off" component="form">
+        <Grid item xs={6}>
+          <TextField
+            required
+            id="outlined-required"
+            label="Username"
+            inputRef={textFieldRefUsername}
+            sx={{ m: 1, width: "25ch", marginLeft: "20%" }}
+          ></TextField>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            required
+            id="outlined-password-input-required"
+            label="Password"
+            type="password"
+            inputRef={textFieldRefPassword}
+            sx={{ m: 1, width: "25ch", marginLeft: "13%" }}
+          ></TextField>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="date"
+            label="Birthday"
+            type="date"
+            defaultValue="2000-01-01"
+            sx={{ m: 1, width: "25ch", marginLeft: "20%" }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="outlined-address-input"
+            label="Address"
+            inputRef={textFieldRefAddress}
+            sx={{ m: 1, width: "25ch", marginLeft: "13%" }}
+          ></TextField>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="outlined-creditcard-input"
+            label="Credit Card Number"
+            inputRef={textFieldRefCreditCard}
+            sx={{ m: 1, width: "25ch", marginLeft: "20%" }}
+          ></TextField>
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            id="outlined-phonenumber-input"
+            label="Phone Number"
+            inputRef={textFieldRefPhoneNumber}
+            sx={{ m: 1, width: "25ch", marginLeft: "13%" }}
+          ></TextField>
+        </Grid>
+        <Button onClick={createAccount} variant="contained">
+          Create Account
+        </Button>
+        {modalIsOpen && <Modal onClick={closeHandler} />}
+        {modalIsOpen && <Backdrop onClick={closeHandler} />}
+      </Grid>
+    </Card>
   );
 }
 
