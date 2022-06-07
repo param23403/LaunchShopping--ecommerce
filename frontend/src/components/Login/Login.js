@@ -15,7 +15,12 @@ const Login=()=>{
         backgroundColor: "#5BAFFF",
     };
     const getCreds=()=>{
-        console.log('Login Clicked')
+        console.log('Login')
+        // getDocs(collection(db, "Users"))
+        // .then((allDocs) => {allDocs.forEach((d) => (((String(username) == String(d.data().username)) && (String(password) == String(d.data().password)))
+        //   ?(setLogged(true), updateDoc(doc(db, "Users", d.id), {
+        //     isLogged: true}),navigate("/home", { state: {username: d.data().username}}))
+        //   : setLogged(false)))})
     }
     return(
         <>
