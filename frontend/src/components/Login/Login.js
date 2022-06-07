@@ -10,6 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
+import logo from '../logow.png'
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
@@ -23,6 +24,9 @@ const Login = () => {
     color: "black",
     backgroundColor: "#5BAFFF",
   };
+  const landonclick=()=>{
+    navigate('/')
+  }
   const getCreds = () => {
     fetch("http://localhost:9000/shopping/usernames")
       .then((res) => res.json())
@@ -32,7 +36,7 @@ const Login = () => {
               console.log("Username correct");
             if (data.result[i].password === password) {
               setUser(data.result[i].id);
-              navigate("/home");
+              navigate("/shopping");
             }
           }
         }
@@ -43,9 +47,7 @@ const Login = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar style={{ backgroundColor: "#5BAFFF" }}>
-            <Typography variant="h3" component="div" style={linkStyle}>
-              ShopCrunch
-            </Typography>
+          <img src={logo} onClick={landonclick} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
           </Toolbar>
         </AppBar>
       </Box>
