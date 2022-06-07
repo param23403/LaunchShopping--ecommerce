@@ -15,12 +15,11 @@ const Login=()=>{
         backgroundColor: "#5BAFFF",
     };
     const getCreds=()=>{
-        console.log('Login')
-        // getDocs(collection(db, "Users"))
-        // .then((allDocs) => {allDocs.forEach((d) => (((String(username) == String(d.data().username)) && (String(password) == String(d.data().password)))
-        //   ?(setLogged(true), updateDoc(doc(db, "Users", d.id), {
-        //     isLogged: true}),navigate("/home", { state: {username: d.data().username}}))
-        //   : setLogged(false)))})
+        fetch("http://localhost:9000/auth/users")
+        .then((res)=>res.json())
+        .then((data)=>{data.result.forEach((d) => (console.log(d.username,username),(((username) === (d.username)) && ((password) === (d.pass)))
+            ?(setLogged(true), console.log(logged)):setLogged(false),console.log(logged)))})
+
     }
     return(
         <>
