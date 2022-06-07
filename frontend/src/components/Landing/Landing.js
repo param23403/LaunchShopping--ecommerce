@@ -14,6 +14,10 @@ const Landing=()=>{
     const loginonClick=()=>{
             navigate("/login")
         }
+    const signuponClick=()=>{
+            navigate("/signup")
+        }
+        
         
     
     return(
@@ -21,7 +25,7 @@ const Landing=()=>{
         <Grid container spacing={2} alignItems ="right">
             <Grid container item sx={9} justifyContext="flex-start">
                 <Button variant='contained'style={linkStyle} onClick={loginonClick}>Login</Button>
-                <Button variant='contained'style={linkStyle}>Sign Up</Button>
+                <Button variant='contained'style={linkStyle} onClick={signuponClick}>Sign Up</Button>
             </Grid>
         </Grid>
 
