@@ -23,7 +23,7 @@ const Landing = () => {
     }    
 
     return(
-        <body>
+        <body class="custom_body">
             <Box sx={{ display: 'flex', justifyContent: 'space-between', borderRadius: 1}}>
                     <img src={logo2} style={{ maxWidth: 200, maxHeight: 50, padding: 15}} alt="logo"></img>
                     <Box>
