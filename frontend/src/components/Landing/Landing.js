@@ -13,8 +13,8 @@ const Landing = () => {
     };
 
     const imageOverlay = {
-        backgroundImage: `url("${background}"), linear-gradient(#D6FFD6, #5BAFFF)`,
-        backgroundBlendMode: "multiply",
+        backgroundImage: `linear-gradient(#D6FFD6, #5BAFFF), url("${background}")`,
+        backgroundBlendMode: "normal",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -26,19 +26,19 @@ const Landing = () => {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', borderRadius: 1}}>
                     <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
                     <Box>
-                        <Link to="/login">
-                            <Button variant='contained'style={linkStyle}>Login</Button>
+                        <Link to="/login" style={{textDecoration: "none"}}>
+                            <Button variant='contained' style={linkStyle}>Login</Button>
                         </Link>
-                        <Link to="/signup">
-                            <Button variant='contained'style={linkStyle}>Sign Up</Button>
+                        <Link to="/signup" style={{textDecoration: "none"}}>
+                            <Button variant='contained' style={linkStyle}>Sign Up</Button>
                         </Link>
                     </Box>
             </Box>
-            <Box sx={{ margin:"auto", marginTop: "30vh", display:"flex", justifyContent:"center", alignItems:"center", maxHeight:"40vh", 
+            <Box sx={{ margin:"auto", marginTop: "25vh", display:"flex", justifyContent:"center", alignItems:"center", maxHeight:"40vh", 
                 border: 4, borderColor: 'white', maxWidth:"30vw", flexDirection:"column"}}>
                 <Typography style={{ fontSize: 45, color: 'white', fontFamily: 'georgia'}}>Online Shopping</Typography>
                 <Typography style={{ fontSize: 45, color: 'white', fontFamily: 'georgia'}}> Done Right.</Typography>
-            <Link to="/shopping">
+            <Link to="/shopping" style={{textDecoration: "none"}}>
                 <Button variant='contained' size='large' style={{ margin: "1rem", borderRadius: 30, 
                     fontFamily: 'georgia', fontSize: 20, textTransform: 'none' }}>Shop Now</Button>
             </Link>
