@@ -4,7 +4,7 @@ var fetch = require("node-fetch");
 const db = require("./firebase");
 
 const {
-  setDoc, getDocs,
+  setDoc, getDocs, collection, doc
 } = require("firebase/firestore");
 const { async } = require("@firebase/util");
 
@@ -13,18 +13,17 @@ router.post("/userCreation", async (req, res, next) => {
         username: req.query.id,
         password: req.body.password,
         birthday: req.body.birthday,
-        creditCardNumber: req.body.creditCardNumber,
-        address: req.body.address,
-        phoneNumber: req.body.phoneNumber
+        defaultAddress: req.body.defaultAddress,
+        defaultCreditCard: req.body.defaultCreditCard,
+        phoneNumber: req.body.phoneNumber,
     })
-
 });
 
 router.get("/usernames", async (req, res, next) => {
     const users = [];
     const docs = await getDocs(collection(db, "Users"));
     docs.forEach((user) =>
-        users.push({ id: user.id })
+        users.push({ id: user.id, ...user.data() })
     );
     res.json({ result: users });
 });
