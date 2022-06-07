@@ -7,6 +7,7 @@ import React from 'react';
 import Login from './components/Login/Login';
 import Signup from './components/signup/Signup';
 import Shopping from './components/Shopping/Shopping.js';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
       <Route path="/cart" element={<Cart />}/>
       <Route path="/account" element={<Account />}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/cart/checkout" element={<Checkout/>}/>
+
       <Route path="/signup" element={<Signup/>}/>
       <Route path="*" element={<Error />}/>
     </Routes>

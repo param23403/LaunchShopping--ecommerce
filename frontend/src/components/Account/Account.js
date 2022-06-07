@@ -1,19 +1,10 @@
-import React, {useEffect,useState, useContext} from "react";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
-import {Link} from "react-router-dom";
-import { ListItem, Typography } from '@mui/material';
-import { common } from "@mui/material/colors";
-import "./Account.css"
+import React, {useState} from "react";
+import "./Account.css";
 import Navbar from "../Navbar/Navbar";
 
 function Account(){
     const[allInfo,setAllInfo]=useState([]);
     const [user, setUser] = useState('')
-
 
     return(
         <>
