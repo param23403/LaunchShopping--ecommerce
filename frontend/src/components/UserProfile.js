@@ -5,28 +5,43 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import {Link} from "react-router-dom";
-import { Typography } from '@mui/material';
+import { ListItem, Typography } from '@mui/material';
 import { common } from "@mui/material/colors";
 import "./UserProfile.css"
+import Navbar from "./Navbar/Navbar";
+import db from "./firebase"
 
 function UserProfile(){
+    const[allInfo,setAllInfo]=useState([]);
+    const [user, setUser] = useState('')
+
+
+
+    function getUser(e){
+        e.preventDefault();
+        db.collection('Users').doc("Survivrr").get()
+        .then(snapshot => setUser(snapshot.data()))
+
+    }
     return(
-    <div class="container">
-      <div class="cover-photo">
+        <>
+        <Navbar ispage={[true, false, false]}/>
+    <div className="container">
+      <div className="cover-photo">
         <img src="profile.jpg" class="profile"></img>
       </div>
-      <div class="profile-name">Firebase Username
+      <div className="profile-name">Firebase Username {user.username}
       <p className="info">Information:</p>
-      <p class="about">Birthday:</p>
-      <p class="about">Address:</p>
-      <p class="about">Phone Number:</p>
-      <p class="about">Address:</p>
+      <p className="about">Birthday:{user.birthday}</p>
+      <p className="about">Address:{user.defaultAddress}</p>
+      <p className="about">Phone Number:{user.phoneNumber}</p>
+      <p className="about">Credit Card:{user.defaultCreditCard}</p>
       </div>
-      <button class="payment-btn">Change Payment Method</button>
-      <button class="edit-btn">Edit profile</button>
+      <button className="payment-btn">Change Payment Method</button>
+      <button className="edit-btn">Edit profile</button>
     </div>
-    )
-};
+    </>
+)};
 
 
 
