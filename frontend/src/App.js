@@ -9,6 +9,8 @@ import Signup from './components/signup/Signup';
 import Shopping from './components/Shopping/Shopping.js';
 import Checkout from './components/Checkout/Checkout';
 
+document.body.style = 'background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #93e393); background-size: contain; min-height: 100vh;';
+
 function App() {
   return (
     <>
