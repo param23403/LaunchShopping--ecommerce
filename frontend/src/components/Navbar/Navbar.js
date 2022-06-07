@@ -11,8 +11,8 @@ import './Navbar.css'
 const Navbar = (props) => {
      let navigate = useNavigate();
 
-    function homeOnClick(){
-       navigate("/homepage")
+    function shoppingOnClick(){
+       navigate("/shopping")
      }
     function cartOnClick(){
         navigate("/cart")
@@ -41,9 +41,9 @@ const Navbar = (props) => {
                     <Typography variant="h3" component="div"style={linkStyle}>
                         ShopCrunch
                     </Typography>
-                        <Link to='homepage'style={linkStyle}><Button color="inherit"  onClick={homeOnClick}>Home</Button></Link>
-                        <Link to='cart'style={linkStyle}><Button color="inherit" onClick={cartOnClick}>Cart</Button></Link>
-                        <Link to ='account'style={linkStyle}><Button color="inherit" onClick={accountOnClick}>Account</Button></Link>
+                        <Link to='/shopping'style={linkStyle}><Button color="inherit"  onClick={shoppingOnClick}>Shop</Button></Link>
+                        <Link to='/cart'style={linkStyle}><Button color="inherit" onClick={cartOnClick}>Cart</Button></Link>
+                        <Link to ='/account'style={linkStyle}><Button color="inherit" onClick={accountOnClick}>Account</Button></Link>
                         <Link to='/'style={linkStyle}><Button color="inherit" onClick={logoutOnClick}>Logout</Button></Link>
                 </Toolbar>
             </AppBar>

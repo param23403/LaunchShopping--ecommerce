@@ -4,7 +4,7 @@ const Homepage=()=>{
     return(
       <>
       <Navbar ispage={[true, false, false]}/>
-    <h1>This is the Home Page</h1>
+    <h1>This is the Shopping Page</h1>
     </>
   )  }
     

@@ -6,12 +6,14 @@ import Error from './components/Error';
 import React from 'react';
 import Login from './components/Login/Login';
 import Signup from './components/signup/Signup';
+import Shopping from './components/Shopping/Shopping.js';
 
 function App() {
   return (
     <>
     <Routes>
       <Route path="/" element={<Landing />}/>
+      <Route path="/shopping" element={<Shopping />}/>
       <Route path="/cart" element={<Cart />}/>
       <Route path="/account" element={<Account />}/>
       <Route path="/login" element={<Login/>}/>
