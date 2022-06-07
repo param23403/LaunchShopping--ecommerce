@@ -7,6 +7,7 @@ import React from 'react';
 import Login from './components/Login/Login';
 import Signup from './components/signup/Signup';
 import Shopping from './components/Shopping/Shopping.js';
+import UserProfile from './components/UserProfile';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/account" element={<Account />}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
+      <Route path="/userprofile" element={<UserProfile/>}/>
       <Route path="*" element={<Error />}/>
     </Routes>
     </>
