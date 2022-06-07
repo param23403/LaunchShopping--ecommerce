@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect,useState, useContext} from "react";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,7 +8,11 @@ import {Link} from "react-router-dom";
 import { Typography } from '@mui/material';
 import { common } from "@mui/material/colors";
 
+const UserProfile=()=>{
 
+const[allInfo, setAllInfo]=useState([]);
+
+{allInfo && allInfo.map((item) => 
 <Card key = {item.id} style = {indivProfileCard}>
 {console.log(item)}
 <Link to ='indivprofilepage' state={{id:item.id,spotifyID:item.spotifyID, username:item.username}} style={{textDecoration:'none',color:common.black}}>
@@ -31,9 +35,16 @@ import { common } from "@mui/material/colors";
     <Grid  item xs>
         
         <h4 className="card__title">Birthday: {item.birthday}</h4>
-        <h4 className="card__title">Address:{item.birthday}  </h4>
-        <h4 className="card__title">Phone Number:{iteam.phonenumber} </h4>
+        <h4 className="card__title">Address:{item.defaultAddress}  </h4>
+        <h4 className="card__title">Phone Number:{item.phoneNumber} </h4>
+        <h4 className="card__title">Payment Method:{item.defaultCreditCard} </h4>
+
     </Grid>
 </Grid>
 </Link>
 </Card>
+
+)};
+        }
+
+export default UserProfile;
