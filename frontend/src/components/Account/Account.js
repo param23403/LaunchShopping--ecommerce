@@ -14,7 +14,6 @@ function Account(){
     const[allInfo,setAllInfo]=useState([]);
     const [user, setUser] = useState('')
 
-    const db=require(".routes/firebase")
 
     return(
         <>
