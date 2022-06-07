@@ -1,6 +1,6 @@
 import {Button, Box, Typography} from '@mui/material'
 import React from 'react';
-import logo from "./logo.png";
+import logo2 from "./logo2.png";
 import background from "./background_overlay.jpg";
 import { Link } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const Landing = () => {
     return(
         <div id="root" style={imageOverlay}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', borderRadius: 1}}>
-                    <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
+                    <img src={logo2} style={{ maxWidth: 200, maxHeight: 50, padding: 15}} alt="logo"></img>
                     <Box>
                         <Link to="/login" style={{textDecoration: "none"}}>
                             <Button variant='contained' style={linkStyle}>Login</Button>
