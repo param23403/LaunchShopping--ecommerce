@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Signup from './components/signup/Signup';
+import UserProfile from './components/UserProfile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Signup />
+    <UserProfile/>
 );

@@ -7,43 +7,27 @@ import Grid from '@mui/material/Grid';
 import {Link} from "react-router-dom";
 import { Typography } from '@mui/material';
 import { common } from "@mui/material/colors";
+import "./UserProfile.css"
 
-const UserProfile=()=>{
+function UserProfile(){
+    return(
+    <div class="container">
+      <div class="cover-photo">
+        <img src="profile.jpg" class="profile"></img>
+      </div>
+      <div class="profile-name">Firebase Username
+      <p className="info">Information:</p>
+      <p class="about">Birthday:</p>
+      <p class="about">Address:</p>
+      <p class="about">Phone Number:</p>
+      <p class="about">Address:</p>
+      </div>
+      <button class="payment-btn">Change Payment Method</button>
+      <button class="edit-btn">Edit profile</button>
+    </div>
+    )
+};
 
-const[allInfo, setAllInfo]=useState([]);
 
-{allInfo && allInfo.map((item) => 
-<Card key = {item.id} >
-{console.log(item)}
-
-{/* <CardActionArea component={Link} to={{pathname:'indivprofilepage', state:{id: item.id }}}> */}
-<h2 className="card__t">Username: {item.username}</h2>
-{/* <IndivProfilePage/> */}
-
-<Grid container spacing ={2}>
-    <Grid className="imageFrame" item xs>
-        <CardMedia
-            style={{
-                width: "auto",
-                maxHeight: "100px"
-            }}
-            component="img"
-            alt="profile image"
-            image='https://png.pngitem.com/pimgs/s/168-1689599_male-user-filled-icon-user-icon-100-x.png'
-            />
-    </Grid>
-    <Grid  item xs>
-        
-        <h4 className="card__title">Birthday: {item.birthday}</h4>
-        <h4 className="card__title">Address:{item.defaultAddress}  </h4>
-        <h4 className="card__title">Phone Number:{item.phoneNumber} </h4>
-        <h4 className="card__title">Payment Method:{item.defaultCreditCard} </h4>
-
-    </Grid>
-</Grid>
-</Card>
-
-)};
-        }
 
 export default UserProfile;
