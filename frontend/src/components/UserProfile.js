@@ -13,9 +13,9 @@ const UserProfile=()=>{
 const[allInfo, setAllInfo]=useState([]);
 
 {allInfo && allInfo.map((item) => 
-<Card key = {item.id} style = {indivProfileCard}>
+<Card key = {item.id} >
 {console.log(item)}
-<Link to ='indivprofilepage' state={{id:item.id,spotifyID:item.spotifyID, username:item.username}} style={{textDecoration:'none',color:common.black}}>
+
 {/* <CardActionArea component={Link} to={{pathname:'indivprofilepage', state:{id: item.id }}}> */}
 <h2 className="card__t">Username: {item.username}</h2>
 {/* <IndivProfilePage/> */}
@@ -41,7 +41,6 @@ const[allInfo, setAllInfo]=useState([]);
 
     </Grid>
 </Grid>
-</Link>
 </Card>
 
 )};
