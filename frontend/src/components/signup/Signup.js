@@ -1,8 +1,9 @@
-import { Button, Grid, TextField, Typography, Card } from "@mui/material";
+import { Button, Grid, TextField, Card, Toolbar, AppBar, Box } from "@mui/material";
 import { useRef, useState } from "react";
 import Backdrop from "./Backdrop";
 import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
+import logo from '../logow.png'
 
 function Signup() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -48,7 +49,21 @@ function Signup() {
     setModalIsOpen(false);
   };
 
+  const landonclick=()=>{
+    navigate('/')
+  }
+
   return (
+    <>
+          <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar style={{ backgroundColor: "#5BAFFF" }}>
+            <Button onClick={landonclick}>
+              <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
+            </Button>          
+          </Toolbar>
+        </AppBar>
+      </Box>
     <Card
       sx={{
         marginTop: "5%",
@@ -124,6 +139,7 @@ function Signup() {
         {modalIsOpen && <Backdrop onClick={closeHandler} />}
       </Grid>
     </Card>
+    </>
   );
 }
 
