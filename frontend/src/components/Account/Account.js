@@ -42,10 +42,11 @@ function Account(){
       <>
       
       <Navbar ispage={[false, false, true]}/>
-        <Grid container alignItems="center" justifyContent="center">
-       <Grid item marginLeft='20%'> <Grid item id="profileImage"></Grid></Grid>
-          <Grid marginTop='2vh' marginLeft="35%"><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {user.user}</b></Typography></Grid></Grid> 
-          <Grid container alignItems="center" justifyContent="center" marginTop='10vh' marginLeft='60%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b>Birthday:</b> {birthday}</Typography></Grid>
+          
+       <Grid container alignItems="center" justifyContent="center">
+          <Grid  marginTop='2vh'><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {user.user}</b></Typography></Grid></Grid> 
+          <Grid item id="profileImage"></Grid>   
+          <Grid container alignItems="center" justifyContent="center" marginLeft='40%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b>Birthday:</b> {birthday}</Typography></Grid>
           <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b> Address:</b> {address}</Typography></Grid>
           <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Phone Number:</b> {number}</Typography></Grid>
           <Grid item xs={12}marginTop='2vh'> <Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Credit Card:</b> {cc}</Typography></Grid>
