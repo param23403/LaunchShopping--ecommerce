@@ -34,7 +34,7 @@ const Navbar = (props) => {
     const landonclick=()=>{
         navigate('/')
     }
-    
+   
     return (
         <>
         <Box sx={{ flexGrow: 1 }}>
