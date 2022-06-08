@@ -9,6 +9,7 @@ body {
   color:#5BAFFF;
   margin-bottom: 30px;
   font-weight: normal;
+  font-family: "Open Sans";
 }
 .login-form .social-icon {
     width: 100%;
@@ -26,6 +27,7 @@ body {
     padding: 15px 30px 30px;
     box-sizing: border-box;
     background:transparent;
+
 }
 
 .login-form input {
@@ -37,6 +39,7 @@ body {
     box-sizing: border-box;
     font-size: 15px;
     padding-left: 75px;
+    
 }
 
 .login-form .form-group .input-icon {
@@ -53,6 +56,7 @@ body {
     height: 100%;
     padding-left: 35px;
     color: #5BAFFF;
+    
 }
 .login-form .login-btn {
   background: transparent;
@@ -68,6 +72,7 @@ body {
   width: 100%;
   height: 56px;
   cursor: pointer;
+  font-family: "Open Sans";
 }
 
 
