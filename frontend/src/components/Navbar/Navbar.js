@@ -42,7 +42,7 @@ const Navbar = (props) => {
         <>
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar style={{backgroundColor: "#5BAFFF"}}>
+                <Toolbar style={{backgroundColor: "#5BAFFF"}} >
                     <Button onClick={landonclick}>
                         <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
                     </Button>                        

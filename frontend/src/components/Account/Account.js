@@ -1,11 +1,17 @@
-import React, {useEffect, useContext} from "react";
+import React, {useEffect, useContext, useState} from "react";
 import "./Account.css";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import {Button, Typography,Container,Grid} from '@mui/material'
 
-function Account(){
+
+const Account=()=>{
     const user = useContext(UserContext);
+    const [birthday,setBirthday] = useState()
+    const [address,setAddress] = useState()
+    const[number,setNumber] = useState()
+    const[cc,setCC] = useState()
 
     let navigate = useNavigate();
     
@@ -14,25 +20,44 @@ function Account(){
               navigate('/login');
           }
     },[]);
+   
+    useEffect(() => {
+      fetch("http://localhost:9000/shopping/usernames")
+      .then((res) => res.json())
+      .then((data)=>{
+        for(let i =0;i<data.result.length;i++) {
+          if(user.user==data.result[i].id){
+            setBirthday(data.result[i].birthday)
+            setAddress(data.result[i].defaultAddress)
+            setNumber(data.result[i].phoneNumber)
+            setCC(data.result[i].defaultCreditCard)
 
+          }
+        }
+        
+      })},[])
+    
+    const editonClick=()=>{
+      console.log("edit clicked")
+    }
     return(
       <>
       
       <Navbar ispage={[false, false, true]}/>
-      <div className="container">
-        <div className="cover-photo">
-          <img src="profile.jpg" class="profile"></img>
-        </div>
-        <div className="profile-name">Firebase Username {user.username}
-          <p className="info">Information:</p>
-          <p className="about">Birthday:{user.birthday}</p>
-          <p className="about">Address:{user.defaultAddress}</p>
-          <p className="about">Phone Number:{user.phoneNumber}</p>
-          <p className="about">Credit Card:{user.defaultCreditCard}</p>
-        </div>
-          <button className="payment-btn">Change Payment Method</button>
-          <button className="edit-btn">Edit profile</button>
-      </div>
+          
+       <Grid container alignItems="center" justifyContent="center">
+          <Grid  marginTop='2vh'><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {user.user}</b></Typography></Grid></Grid> 
+          <Grid item id="profileImage">{user.user[0]}</Grid>   
+          <Grid container alignItems="center" justifyContent="center" marginLeft='40%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b>Birthday:</b> {birthday}</Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b> Address:</b> {address}</Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Phone Number:</b> {number}</Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'> <Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Credit Card:</b> {cc}</Typography></Grid>
+       
+          <Grid item xs={12}marginTop='2vh'><Button style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} variant="contained" size='small'>Change Payment Method</Button></Grid>
+          <br></br>
+          <br></br>
+          <Grid item xs={12}marginTop='2vh'> <Button  style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }}variant="contained" size='small'onClick='editonClick'>Edit profile</Button></Grid>
+          </Grid> 
       </>
 )};
 
