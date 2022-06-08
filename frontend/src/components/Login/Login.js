@@ -22,6 +22,9 @@ const Login = () => {
   const landonclick=()=>{
     navigate('/')
   }
+  const goToSignUp=()=>{
+    navigate('/signup')
+  }
   const getCreds = () => {
     fetch("http://localhost:9000/shopping/usernames")
       .then((res) => res.json())
@@ -60,6 +63,9 @@ const Login = () => {
                 <span className='input-icon'><i className="fa fa-envelope"><LockIcon/></i></span>
                 </div>
                 <Button onClick={getCreds} className='login-btn' variant="contained">Sign In</Button>
+                <p></p>
+                <Button onClick={goToSignUp} className='login-btn' variant="contained">Create Account</Button>
+                
         </div>
       
     </>
