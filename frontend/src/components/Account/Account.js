@@ -1,9 +1,9 @@
-import React, {useEffect, useContext} from "react";
+import React, {useEffect, useContext, useState} from "react";
 import "./Account.css";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
-import {Button} from '@mui/material'
+import {Button, Typography,Container,Grid} from '@mui/material'
 function Account(){
     const user = useContext(UserContext);
     const [birthday,setBirthday] = useState()
@@ -42,21 +42,19 @@ function Account(){
       <>
       
       <Navbar ispage={[false, false, true]}/>
-      <div className="container">
-        <div className="cover-photo">
-          <img src="profile.jpg" class="profile"></img>
-        </div>
-        <div className="profile-name">Welcome {user.user}
-          <p className="about">Birthday: {birthday}</p>
-          <p className="about">Address: {address}</p>
-          <p className="about">Phone Number: {number}</p>
-          <p className="about">Credit Card: {cc}</p>
-        </div>
-          <Button  variant="contained" size='small'>Change Payment Method</Button>
+        <Grid container alignItems="center" justifyContent="center">
+       <Grid item marginLeft='20%'> <Grid item id="profileImage"></Grid></Grid>
+          <Grid marginTop='2vh' marginLeft="35%"><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {user.user}</b></Typography></Grid></Grid> 
+          <Grid container alignItems="center" justifyContent="center" marginTop='10vh' marginLeft='60%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b>Birthday:</b> {birthday}</Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b> Address:</b> {address}</Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Phone Number:</b> {number}</Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'> <Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Credit Card:</b> {cc}</Typography></Grid>
+       
+          <Grid item xs={12}marginTop='2vh'><Button style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} variant="contained" size='small'>Change Payment Method</Button></Grid>
           <br></br>
           <br></br>
-          <Button  variant="contained" onClick='editonClick'>Edit profile</Button>
-      </div>
+          <Grid item xs={12}marginTop='2vh'> <Button  style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }}variant="contained" size='small'onClick='editonClick'>Edit profile</Button></Grid>
+          </Grid> 
       </>
 )};
 
