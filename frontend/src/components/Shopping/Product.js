@@ -1,8 +1,13 @@
 import { Card, Typography } from "@mui/material";
 
 function Product(props) {
+
+    const update = () => {
+        props.setSelected(true);
+    }
+
   return (
-    <div>
+    <button onClick={update}>
       <Card>
         <img
           src={props.img
@@ -17,7 +22,7 @@ function Product(props) {
           <strong>US: ${props.price}</strong>
         </Typography>
       </Card>
-    </div>
+    </button>
   );
 }
 
