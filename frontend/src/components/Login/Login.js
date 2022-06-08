@@ -1,20 +1,29 @@
 import { React, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Grid, AppBar, Toolbar, TextField, Button } from "@mui/material";
+import { Box, Grid, AppBar, Toolbar, Typography, TextField, Button } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
-import logo from '../logow.png';
+import logo from '../logow.png'
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import "./Login.css";
+import "./Login.css"
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
   let navigate = useNavigate();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const[logged, setLogged] = useState();
+  const [logged, setLogged] = useState(false);
+  const linkStyle = {
+    margin: "1rem",
+    textDecoration: "none",
+    color: "black",
+    backgroundColor: "#5BAFFF",
+  };
   const landonclick=()=>{
     navigate('/')
+  }
+  const goToSignUp=()=>{
+    navigate('/signup')
   }
   const getCreds = () => {
     fetch("http://localhost:9000/shopping/usernames")
@@ -36,13 +45,11 @@ const Login = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar style={{ backgroundColor: "#5BAFFF" }}>
-            <Button onClick={landonclick}>
-              <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
-            </Button>
+          <img src={logo} onClick={landonclick} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
           </Toolbar>
         </AppBar>
       </Box>
-      <div className='login-form'>
+        <div className='login-form'>
             <h1 className="loginh">Log In</h1>
                 <div className='form-group'>
                 <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>{{
@@ -55,8 +62,12 @@ const Login = () => {
                 <input type="password" placeholder="Enter Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                 <span className='input-icon'><i className="fa fa-envelope"><LockIcon/></i></span>
                 </div>
-                <button onClick={getCreds} className='login-btn'>Sign In</button>
+                <Button onClick={getCreds} className='login-btn' variant="contained">Sign In</Button>
+                <p></p>
+                <Button onClick={goToSignUp} className='login-btn' variant="contained">Create Account</Button>
+                
         </div>
+      
     </>
   );
 };
