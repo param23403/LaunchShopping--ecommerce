@@ -1,11 +1,13 @@
-import {React, useState} from "react";
+import {React, useState, useContext} from "react";
 import { Link } from "react-router-dom";
 import { AppBar, Box, Toolbar, Button } from '@mui/material';
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 import './Navbar.css'
 import logo from '../logow.png'
 const Navbar = (props) => {
      let navigate = useNavigate();
+     const { user, setUser } = useContext(UserContext);
 
     function shoppingOnClick(){
        navigate("/shopping")
@@ -21,7 +23,8 @@ const Navbar = (props) => {
 
 
     function logoutOnClick(){
-      navigate("/")
+        setUser("");
+        navigate("/")
     }
     const linkStyle = {
         margin: "1rem",

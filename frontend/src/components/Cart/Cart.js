@@ -1,10 +1,20 @@
 import Navbar from '../Navbar/Navbar'
-import React from 'react';
+import React, {useEffect, useContext} from "react";
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../../contexts/UserContext";
 
 const Cart=()=>{
     let navigate = useNavigate()
+
+    const user = useContext(UserContext);
+    
+    useEffect(() => {
+          if (user.user === '') {
+              navigate('/login');
+          }
+    },[]);
+
     const movetocheckout=()=>{
         navigate('./checkout')
     }
