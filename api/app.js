@@ -1,4 +1,6 @@
-const stripe = require('stripe')('sk_test_51L8UYtGUl5wOGSTuehg8AcfyUYKRVmOpFJioKUwiEk4uKA2H3pGMPU3xBuYVr0ExNgCPDCfvGT6ByO6xyMNA9qzM0065M47FwP');
+require('dotenv').config();
+
+const stripe = require('stripe')(process.env.STRIPE_ID);
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
