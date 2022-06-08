@@ -34,7 +34,6 @@ const Account=()=>{
 
           }
         }
-        
       })},[])
     
     const editonClick=()=>{
