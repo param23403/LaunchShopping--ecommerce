@@ -1,6 +1,6 @@
 import { React, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Grid, AppBar, Toolbar, Typography, TextField, Button } from "@mui/material";
+import { Box, AppBar, Toolbar } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
 import logo from '../logow.png'
 import EmailIcon from '@mui/icons-material/Email';
@@ -31,6 +31,10 @@ const Login = () => {
               console.log("Username correct");
             if (data.result[i].password === password) {
               setUser(data.result[i].id);
+              fetch("http://localhost:9000/shopping/isLogged?id=" + data.result[i].id, 
+                {method: "POST",}
+              )
+              .then((res) => console.log(res.json()));
               navigate("/shopping");
             }
           }

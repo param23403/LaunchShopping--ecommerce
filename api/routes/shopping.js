@@ -4,7 +4,7 @@ var fetch = require("node-fetch");
 const db = require("./firebase");
 
 const {
-  setDoc, getDocs, collection, doc
+  setDoc, getDocs, collection, doc, updateDoc, 
 } = require("firebase/firestore");
 const { async } = require("@firebase/util");
 
@@ -16,6 +16,14 @@ router.post("/userCreation", async (req, res, next) => {
         defaultAddress: req.body.defaultAddress,
         defaultCreditCard: req.body.defaultCreditCard,
         phoneNumber: req.body.phoneNumber,
+        isLogged: false,
+    })
+});
+
+router.post("/isLogged", async (req, res, next) => {
+    console.log(req.query.id);
+    await updateDoc(doc(db, "Users", req.query.id), {
+        isLogged: true,
     })
 });
 
