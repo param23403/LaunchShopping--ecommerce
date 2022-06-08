@@ -45,7 +45,7 @@ function Account(){
           
        <Grid container alignItems="center" justifyContent="center">
           <Grid  marginTop='2vh'><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {user.user}</b></Typography></Grid></Grid> 
-          <Grid item id="profileImage"></Grid>   
+          <Grid item id="profileImage">{user.user[0]}</Grid>   
           <Grid container alignItems="center" justifyContent="center" marginLeft='40%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b>Birthday:</b> {birthday}</Typography></Grid>
           <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b> Address:</b> {address}</Typography></Grid>
           <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Phone Number:</b> {number}</Typography></Grid>
