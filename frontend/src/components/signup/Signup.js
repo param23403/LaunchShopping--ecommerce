@@ -66,7 +66,7 @@ function Signup() {
         </AppBar>
       </Box>
     <div className="container" >
-      <h1>Sign up</h1>
+      <h1>Sign Up</h1>
       <Grid container justifyContent='center' autoComplete="off" component="form">
         <Grid item xs={6}>
           <TextField
