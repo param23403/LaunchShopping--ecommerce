@@ -1,6 +1,6 @@
 import { React, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, AppBar, Toolbar } from "@mui/material";
+import { Box, AppBar, Toolbar, Button } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
 import logo from '../logow.png'
 import EmailIcon from '@mui/icons-material/Email';
@@ -57,7 +57,6 @@ const Login = () => {
             <h1 className="loginh">Log In</h1>
                 <div className='form-group'>
                 <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>{{
-                    console.log(e.target.value); 
                     setUsername(e.target.value); 
                 }}}/>
                 <span className='input-icon'><i className="fa fa-envelope"> <EmailIcon/></i></span>

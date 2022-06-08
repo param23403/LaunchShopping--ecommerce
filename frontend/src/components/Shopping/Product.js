@@ -8,12 +8,13 @@ function Product(props) {
           src={props.img
           }
           alt=""
-          style={{ margin: "auto", width: "100%", objectFit: "cover" }}
+          style={{ margin: "auto", width: "100%", objectFit: "cover" }} m={2}
         />
-        <Typography variant="p">{props.name}</Typography>
+        <Typography style={{fontFamily: "open sans", justifyContent: "center"}} variant="p">{props.name}</Typography>
+        <br />
         <br />
         <Typography variant="p">
-          <strong>US${props.price}</strong>
+          <strong>US: ${props.price}</strong>
         </Typography>
       </Card>
     </div>

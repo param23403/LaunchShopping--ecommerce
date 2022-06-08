@@ -5,17 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
 function Account(){
-    const[allInfo,setAllInfo]=useState([]);
     const user = useContext(UserContext);
+
     let navigate = useNavigate();
     
-    useEffect(()=>{
-        console.log(user)
-          if (user==='') {
-              navigate('/login')
-          
+    useEffect(() => {
+          if (user.user === '') {
+              navigate('/login');
           }
-    }, []);   
+    },[]);
 
     return(
       <>
