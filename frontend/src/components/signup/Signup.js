@@ -65,18 +65,8 @@ function Signup() {
           </Toolbar>
         </AppBar>
       </Box>
-    <Card
-      sx={{
-        marginTop: "5%",
-        marginLeft: "33%",
-        marginRight: "33%",
-        paddingBottom: "1%",
-        paddingTop: "0.5%",
-        boxShadow: 7,
-        borderRadius: 2,
-        
-      }}
-    >
+    <div className="container" >
+      <h1>Sign up</h1>
       <Grid container justifyContent='center' autoComplete="off" component="form">
         <Grid item xs={6}>
           <TextField
@@ -84,7 +74,7 @@ function Signup() {
             id="outlined-required"
             label="Username"
             inputRef={textFieldRefUsername}
-            sx={{ m: 1, width: "25ch", marginLeft: "20%" }}
+            sx={{ m: 1, width: "25ch", marginLeft: "0%" }}
           ></TextField>
         </Grid>
         <Grid item xs={6}>
@@ -94,7 +84,7 @@ function Signup() {
             label="Password"
             type="password"
             inputRef={textFieldRefPassword}
-            sx={{ m: 1, width: "25ch", marginLeft: "13%" }}
+            sx={{ m: 1, width: "25ch", marginLeft: "40%" }}
           ></TextField>
         </Grid>
         <Grid item xs={6}>
@@ -103,7 +93,7 @@ function Signup() {
             label="Birthday"
             type="date"
             defaultValue="2000-01-01"
-            sx={{ m: 1, width: "25ch", marginLeft: "20%" }}
+            sx={{ m: 1, width: "25ch", marginLeft: "0%" }}
             InputLabelProps={{
               shrink: true,
             }}
@@ -114,7 +104,7 @@ function Signup() {
             id="outlined-address-input"
             label="Address"
             inputRef={textFieldRefAddress}
-            sx={{ m: 1, width: "25ch", marginLeft: "13%" }}
+            sx={{ m: 1, width: "25ch", marginLeft: "40%" }}
           ></TextField>
         </Grid>
         <Grid item xs={6}>
@@ -122,7 +112,7 @@ function Signup() {
             id="outlined-creditcard-input"
             label="Credit Card Number"
             inputRef={textFieldRefCreditCard}
-            sx={{ m: 1, width: "25ch", marginLeft: "20%" }}
+            sx={{ m: 1, width: "25ch", marginLeft: "0%" }}
           ></TextField>
         </Grid>
         <Grid item xs={6}>
@@ -130,16 +120,16 @@ function Signup() {
             id="outlined-phonenumber-input"
             label="Phone Number"
             inputRef={textFieldRefPhoneNumber}
-            sx={{ m: 1, width: "25ch", marginLeft: "13%" }}
+            sx={{ m: 1, width: "25ch", marginLeft: "40%" }}
           ></TextField>
         </Grid>
-        <Button onClick={createAccount} variant="contained">
+        <Button className='login-btn' onClick={createAccount} variant="contained" >
           Create Account
         </Button>
         {modalIsOpen && <Modal onClick={closeHandler} />}
         {modalIsOpen && <Backdrop onClick={closeHandler} />}
       </Grid>
-    </Card>
+    </div>
     </>
   );
 }

@@ -36,4 +36,13 @@ router.get("/usernames", async (req, res, next) => {
     res.json({ result: users });
 });
 
+router.get("/products", async (req, res, next) => {
+    const products = [];
+    const docs = await getDocs(collection(db, "Products"));
+    docs.forEach((item) =>
+        products.push({ id: item.id, ...item.data() })
+    )
+    res.json({ result: products })
+});
+
 module.exports = router;

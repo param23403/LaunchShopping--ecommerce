@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./Account.css";
 import Navbar from "../Navbar/Navbar";
 
 function Account(){
-    const[allInfo,setAllInfo]=useState([]);
     const [user, setUser] = useState('')
-
     return(
       <>
       <Navbar ispage={[false, false, true]}/>
