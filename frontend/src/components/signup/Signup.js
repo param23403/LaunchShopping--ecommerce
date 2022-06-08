@@ -9,7 +9,7 @@ import "./SignUp.css"
 function Signup() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
-  const textFieldRefUsername = useRef(null);
+  const textFieldRefUsername = useRef("");
   const textFieldRefPassword = useRef(null);
   const textFieldRefAddress = useRef(null);
   const textFieldRefPhoneNumber = useRef(null);
@@ -41,9 +41,8 @@ function Signup() {
               phoneNumber: textFieldRefPhoneNumber.current.value,
             }),
           }
-        ).then((res) => console.log(res.json()));
+        ).then((res) => console.log(res.json())).then(navigate('/shopping'));
       });
-      navigate('/shopping');
   };
 
   const closeHandler = () => {
