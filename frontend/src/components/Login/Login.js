@@ -12,6 +12,7 @@ const Login = () => {
   let navigate = useNavigate();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const[logged, setLogged] = useState();
   const landonclick=()=>{
     navigate('/')
   }

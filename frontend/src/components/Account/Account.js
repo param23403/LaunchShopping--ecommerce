@@ -1,13 +1,25 @@
-import React, {useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import "./Account.css";
 import Navbar from "../Navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 
 function Account(){
     const[allInfo,setAllInfo]=useState([]);
-    const [user, setUser] = useState('')
+    const user = useContext(UserContext);
+    let navigate = useNavigate();
+    
+    useEffect(()=>{
+        console.log(user)
+          if (user==='') {
+              navigate('/login')
+          
+          }
+    }, []);   
 
     return(
       <>
+      
       <Navbar ispage={[false, false, true]}/>
       <div className="container">
         <div className="cover-photo">

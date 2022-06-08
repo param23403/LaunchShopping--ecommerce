@@ -17,5 +17,14 @@ router.get("/users", async (req, res, next) => {
     res.json({ result: users });
 });
 
+router.get("/islogged", async (req, res, next) => {
+    var log = [];
+    const docs = await getDocs(collection(db, "Users"));
+    docs.forEach((user) =>(
+        log.push({ id: user.id, ...user.data() })
+    ));
+    res.json({ result: log });
+});
+
 
 module.exports = router;

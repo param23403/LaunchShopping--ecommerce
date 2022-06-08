@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react";
 
-const UserContext = createContext("");
+const UserContext = createContext('');
 
 function UserProvider({ children }) {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState('');
   const obj = { user: user, setUser: setUser };
   
   return (
