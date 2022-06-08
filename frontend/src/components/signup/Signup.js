@@ -4,6 +4,7 @@ import Backdrop from "./Backdrop";
 import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 import logo from '../logow.png'
+import "./SignUp.css"
 
 function Signup() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
