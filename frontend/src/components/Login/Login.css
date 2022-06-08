@@ -1,159 +1,80 @@
 body {
-    background: white;
-    font-family: arial;
-     
-  }
-  .login-form h1 {
-    font-size: 36px;
-    text-align: center;
-    color:#5BAFFF;
-    margin-bottom: 30px;
-    font-weight: normal;
-  }
-  .logout{
-      position: relative;
-      left: 800px;
-      font-size: small;
-  }
-  .login-form .social-icon {
-      width: 100%;
-      font-size: 20px;
-      padding-top: 20px;
-      color: #fff;
-      text-align: center;
-      float: left;
-  }
-  .login-form {
-      width: 450px;
-      border-radius: 6px;
-      margin: 0 auto;
-      display: table;
-      padding: 15px 30px 30px;
-      box-sizing: border-box;
-      background:transparent;
-  }
-  .form-group {
-    float: left;
+  background: white;
+  font-family: arial;
+   
+}
+.login-form h1 {
+  font-size: 36px;
+  text-align: center;
+  color:#5BAFFF;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+.login-form .social-icon {
     width: 100%;
-    margin: 0 0 15px;
-    position: relative;
-  }
-  .header{
-    height: 105px;
-    width: 100%;
-    margin-bottom: 100px;
-  }
-  .login-form input {
-      width: 100%;
-      padding: 5px;
-      height: 56px;
-      border-radius: 74px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      font-size: 15px;
-      padding-left: 75px;
-  }
-  .loginh{
-      color: #5BAFFF;
-  }
-  .userLog{
-      margin-left: 130px;
-  }
- 
-
-  .logotitle{
-
-  }
-  .Logo{
-    height: 75px;
-    width: 75px;
-    left: 150px;
-    margin-left: 210px;
-
-  }
-  .login-form .form-group .input-icon {
-      font-size: 15px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      align-items: center;
-      position: absolute;
-      border-radius: 25px;
-      bottom: 0;
-      height: 100%;
-      padding-left: 35px;
-      color: #5BAFFF;
-  }
-  .login-form .login-btn {
-    background: transparent;
-    padding: 11px 50px;
-    border-style:#5BAFFF;
-    border-color:#5BAFFF;
-    color: #5BAFFF;
-    text-align: center;
-    margin: 0 auto;
     font-size: 20px;
-    border: 1px solid #5BAFFF;
-    border-radius: 44px;
+    padding-top: 20px;
+    color: #fff;
+    text-align: center;
+    float: left;
+}
+.login-form {
+    width: 450px;
+    border-radius: 6px;
+    margin: 0 auto;
+    display: table;
+    padding: 15px 30px 30px;
+    box-sizing: border-box;
+    background:transparent;
+}
+
+.login-form input {
     width: 100%;
+    padding: 5px;
     height: 56px;
-    cursor: pointer;
-  }
-  .login-form .social-icon button {
-      font-size: 20px;
-      color: white;
-      height: 50px;
-      width: 50px;
-      background:transparent;
-      border-radius: 60%;
-      margin: 0px 10px;
-      border: none;
-      cursor: pointer;
-  }
-  .login-form button:hover{
-    opacity: 0.9;
-  }
-  .login-form .seperator {
-    float: left;
-    width: 100%;
-    border-top: 1px solid #ccc;
-    text-align: center;
-    margin: 50px 0 0;
-  }
-  .login-form .seperator b {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    text-align: center;
-    line-height: 40px;
-    background: #fff;
-    display: inline-block;
-    border: 1px solid #5BAFFF;
-    border-radius: 50%;
-    position: relative;
-    top: -22px;
-    z-index: 1;
-  }
-  .login-form p {
-    float: left;
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
-    margin: 0 0 10px;
-  }
+    border-radius: 74px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 15px;
+    padding-left: 75px;
+}
 
-  .login-btn :hover{
-       background: #5BAFFF;
+.login-form .form-group .input-icon {
+    font-size: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    height: 100%;
+    padding-left: 35px;
     color: #5BAFFF;
-    transition: 0.5s;
-  }
+}
+.login-form .login-btn {
+  background: transparent;
+  padding: 11px 50px;
+  border-style:#5BAFFF;
+  border-color:#5BAFFF;
+  color: #5BAFFF;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+  border: 1px solid #5BAFFF;
+  border-radius: 44px;
+  width: 100%;
+  height: 56px;
+  cursor: pointer;
+}
 
 
-  @media screen and (max-width:767px) {
-  .login-form {
-      width: 90%;
-      padding: 15px 15px 30px;
-  }
-  }
+
+@media screen and (max-width:767px) {
+.login-form {
+    width: 90%;
+    padding: 15px 15px 30px;
+}
+}
