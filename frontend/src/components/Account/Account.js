@@ -32,7 +32,6 @@ function Account(){
 
           }
         }
-        
       })},[])
     
     const editonClick=()=>{
