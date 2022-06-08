@@ -4,7 +4,9 @@ import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import {Button, Typography,Container,Grid} from '@mui/material'
-function Account(){
+
+
+const Account=()=>{
     const user = useContext(UserContext);
     const [birthday,setBirthday] = useState()
     const [address,setAddress] = useState()
