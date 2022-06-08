@@ -16,7 +16,6 @@ router.post("/userCreation", async (req, res, next) => {
         defaultAddress: req.body.defaultAddress,
         defaultCreditCard: req.body.defaultCreditCard,
         phoneNumber: req.body.phoneNumber,
-        isLogged: false,
     })
 });
 

@@ -34,10 +34,6 @@ const Login = () => {
               console.log("Username correct");
             if (data.result[i].password === password) {
               setUser(data.result[i].id);
-              fetch("http://localhost:9000/shopping/isLogged?id=" + data.result[i].id, 
-                {method: "POST",}
-              )
-              .then((res) => console.log(res.json()));
               navigate("/shopping");
             }
           }
