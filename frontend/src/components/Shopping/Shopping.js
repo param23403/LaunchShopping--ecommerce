@@ -17,6 +17,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Product from "./Product";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import { display } from "@mui/system";
 
 const stack1 = [];
 const stack2 = [];
@@ -312,7 +313,7 @@ const Homepage = () => {
       {productSelected && (
         <Grid container>
           <Grid item>
-            <img src={object.img} />
+            <img src={object.img}/>
           </Grid>
           <Grid item>
             <Stack>
