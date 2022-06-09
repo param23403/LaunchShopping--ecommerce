@@ -164,14 +164,14 @@ const Account=()=>{
           <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closepass}></ClearIcon></Grid>
             <DialogTitle variant="h4"><b>Change Password</b></DialogTitle>
             <DialogContent>
-              <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter Current Password" onChange={(e)=>{setCurPass(e.target.value)}}></TextField></Grid>
+              <Grid item maxWidth='100%' marginLeft='12%'><TextField type='password'placeholder="Enter Current Password" onChange={(e)=>{setCurPass(e.target.value)}}></TextField></Grid>
               <br/>
-              <Grid item marginLeft='12%'><TextField placeholder="Enter New Password" onChange={(e)=>{setNewPass(e.target.value)}}></TextField></Grid>
+              <Grid item marginLeft='12%'><TextField type='password' placeholder="Enter New Password" onChange={(e)=>{setNewPass(e.target.value)}}></TextField></Grid>
               <br/>
 
-              <Grid item marginLeft='12%'> <TextField placeholder="Confirm New Password"onChange={(e)=>{setNewConPass(e.target.value)}}></TextField></Grid>
+              <Grid item marginLeft='12%'> <TextField type='password'placeholder="Confirm New Password"onChange={(e)=>{setNewConPass(e.target.value)}}></TextField></Grid>
               <br/>
-              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updatepass}>Change Passsword</Button></Grid>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={(e)=>{updatepass();closepass(e)}}>Change Passsword</Button></Grid>
               </DialogContent>
           </Dialog>
           <Dialog open={bdaymodel}>
@@ -180,7 +180,7 @@ const Account=()=>{
             <DialogContent>
               <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Birthday" onChange={(e)=>{setNewBday(e.target.value)}}></TextField></Grid>
               <br/>
-              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updatebday}>Change bday</Button></Grid>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={(e)=>{updatebday();closebday(e)}}>Change bday</Button></Grid>
               </DialogContent>
           </Dialog>
           <Dialog open={nummodel}>
@@ -189,7 +189,7 @@ const Account=()=>{
             <DialogContent>
               <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Number" onChange={(e)=>{setNewNum(e.target.value)}}></TextField></Grid>
               <br/>
-              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updatenum}>Change number</Button></Grid>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={(e)=>{updatenum();closenumber(e)}}>Change number</Button></Grid>
               </DialogContent>
           </Dialog> <Dialog open={addmodel}>
           <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closeaddress}></ClearIcon></Grid>
@@ -197,7 +197,7 @@ const Account=()=>{
             <DialogContent>
               <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Address" onChange={(e)=>{setNewAdd(e.target.value)}}></TextField></Grid>
               <br/>
-              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updateadd}>Change Address</Button></Grid>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={(e)=>{updateadd();closeaddress(e)}}>Change Address</Button></Grid>
               </DialogContent>
           </Dialog>
           <Dialog open={usernamemodel}>
@@ -206,7 +206,7 @@ const Account=()=>{
             <DialogContent>
               <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Username" onChange={(e)=>{setNewUserName(e.target.value)}}></TextField></Grid>
               <br/>
-              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updateusername}>Change Username</Button></Grid>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={(e)=>{updateusername();closeuser(e)}}>Change Username</Button></Grid>
               </DialogContent>
           </Dialog>
       </>
