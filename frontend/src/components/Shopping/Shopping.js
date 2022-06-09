@@ -7,6 +7,10 @@ import {
   Stack,
   Typography,
   Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState, useRef } from "react";
@@ -19,6 +23,7 @@ const stack2 = [];
 const stack3 = [];
 const stack4 = [];
 let object = null;
+
 const Homepage = () => {
   const [stateStack1, setStateStack1] = useState([]);
   const [stateStack2, setStateStack2] = useState([]);
@@ -29,6 +34,7 @@ const Homepage = () => {
   const [liked, setLiked] = useState(false);
   const [rendering, setRendering] = useState("");
   const textFieldRefSearch = useRef(null);
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
@@ -127,7 +133,7 @@ const Homepage = () => {
 
   const backToShopping = () => {
     setProductSelected(false);
-  }
+  };
 
   const search = () => {
     const searchedFor = [];
@@ -190,6 +196,10 @@ const Homepage = () => {
     setStateStack4(searchStack4);
   };
 
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
+
   return (
     <>
       <Navbar ispage={[true, false, false]} />
@@ -213,7 +223,21 @@ const Homepage = () => {
               </IconButton>
             </Card>
           </Grid>
-          <Grid item xs={2}></Grid>
+          <Grid item xs={2}>
+            <FormControl fullWidth>
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={category}
+                label="Category"
+                onChange={handleChange}
+              >
+                <MenuItem value={'men pants'}>Men's Pants</MenuItem>
+                <MenuItem value={'dress'}>Women's Dress</MenuItem>
+                <MenuItem value={'men shorts'}>Men's Shorts</MenuItem>
+                <MenuItem value={'men shirt'}>Men's Shirts</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
           <Grid item xs={8}>
             <Grid
               container
