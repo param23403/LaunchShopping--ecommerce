@@ -2,6 +2,7 @@ import { Button, Card, Typography } from "@mui/material";
 
 function Product(props) {
   const update = () => {
+    props.setKeys(props.id);
     props.setSelected(true);
   };
 
