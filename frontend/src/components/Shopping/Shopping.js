@@ -184,6 +184,7 @@ const Homepage = () => {
                       name={good.name}
                       price={good.price}
                       img={good.img}
+                      setSelected={setProductSelected}
                     />
                   ))}
                 </Stack>
@@ -197,6 +198,7 @@ const Homepage = () => {
                       name={good.name}
                       price={good.price}
                       img={good.img}
+                      setSelected={setProductSelected}
                     />
                   ))}
                 </Stack>
@@ -210,6 +212,7 @@ const Homepage = () => {
                       name={good.name}
                       price={good.price}
                       img={good.img}
+                      setSelected={setProductSelected}
                     />
                   ))}
                 </Stack>
