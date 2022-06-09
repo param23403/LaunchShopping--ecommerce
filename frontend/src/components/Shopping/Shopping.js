@@ -188,6 +188,21 @@ const Homepage = () => {
     setStateStack4(searchStack4);
   };
 
+  const toCart = (priceID) => {
+    console.log("we are inside toCart function")
+    console.log(priceID);
+    console.log(typeof priceID);
+    if (!localStorage.getItem('priceIDs')) {
+      localStorage.setItem('priceIDs', String(priceID));
+    }
+    else {
+      let existing = localStorage.getItem('priceIDs');
+      existing = existing ? existing.split(',') : [];
+      existing.push(String(priceID));
+      localStorage.setItem('priceIDs', existing.toString());
+    }
+  };
+
   return (
     <>
       <Navbar ispage={[true, false, false]} />
@@ -317,7 +332,7 @@ const Homepage = () => {
                 )}
               </Typography>
               <Typography variant="p">{object.bio}</Typography>
-              <Button>Add to Cart</Button>
+              <Button onClick={toCart(object.priceID)}>Add to Cart</Button>
               <Button>Buy Now</Button>
               <Typography variant="h5">
                 Shipping Cost: ${object.shippingCost}

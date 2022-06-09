@@ -1,4 +1,4 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, AppBar, Toolbar, Button } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
@@ -40,6 +40,13 @@ const Login = () => {
         }
       });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('priceIDs')) {
+      localStorage.removeItem('priceIDs');
+    }
+  }, []);
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>

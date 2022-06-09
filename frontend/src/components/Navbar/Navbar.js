@@ -23,8 +23,11 @@ const Navbar = (props) => {
 
 
     function logoutOnClick(){
+        if (localStorage.getItem('priceIDs')) {
+            localStorage.removeItem('priceIDs');
+        }
         setUser("");
-        navigate("/")
+        navigate("/");
     }
     const linkStyle = {
         margin: "1rem",

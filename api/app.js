@@ -44,17 +44,20 @@ app.use(express.static('public'));
 const YOUR_DOMAIN = 'http://localhost:3000';
 
 app.post('/create-checkout-session', async (req, res) => {
+  console.log(req.body);
+  //arrayIDs = req.body.priceIDs;
+  //console.log(arrayIDs);
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1L8UyHGUl5wOGSTugOPT1Kca',
+        price: 'price_1L8rpiGUl5wOGSTub6C3LN1c',
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/cart?success=true`,
-    cancel_url: `${YOUR_DOMAIN}/cart?canceled=true`,
+    success_url: `${YOUR_DOMAIN}/success`,
+    cancel_url: `${YOUR_DOMAIN}/cancelled`,
   });
 
   res.redirect(303, session.url);
