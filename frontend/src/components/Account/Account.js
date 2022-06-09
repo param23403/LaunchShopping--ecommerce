@@ -5,18 +5,32 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import {Button, Dialog,Typography,Container,Grid, DialogTitle, DialogContent, TextField} from '@mui/material'
 import ClearIcon from '@mui/icons-material/Clear';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Account=()=>{
     const user = useContext(UserContext);
     const [birthday,setBirthday] = useState()
     const [address,setAddress] = useState()
     const[number,setNumber] = useState()
+    const[username,setUsername] = useState()
+
     const[cc,setCC] = useState()
     const[passmodel,setPassModel] = useState()
+    const[bdaymodel,setbdayModel] = useState()
+    const[nummodel,setnumModel] = useState()
+    const[addmodel,setaddModel] = useState()
+    const[usernamemodel,setUserModel] = useState()
+
     const[curpass, setCurPass] = useState()
     const[newpass, setNewPass] = useState()
     const[newconpass, setNewConPass] = useState()
     const[fetchedpass,setFetchedpass] = useState()
+
+
+    const[newbday,setNewBday]=useState()
+    const[newadd,setNewAdd]=useState()
+    const[newnum,setNewNum]=useState()
+    const[newusername,setNewUserName]=useState()
     let navigate = useNavigate();
     
     useEffect(() => {
@@ -31,6 +45,7 @@ const Account=()=>{
       .then((data)=>{
         for(let i =0;i<data.result.length;i++) {
           if(user.user==data.result[i].id){
+            setUsername(data.result[i].username)
             setBirthday(data.result[i].birthday)
             setAddress(data.result[i].defaultAddress)
             setNumber(data.result[i].phoneNumber)
@@ -49,6 +64,30 @@ const Account=()=>{
     const closepass=()=>{
       setPassModel(false)
     }
+    const changeuser=()=>{
+      setUserModel(true)
+    }
+    const closeuser=()=>{
+      setUserModel(false)
+    }
+    const changebday=()=>{
+      setbdayModel(true)
+    }
+    const closebday=()=>{
+      setbdayModel(false)
+    } 
+    const changeaddress=()=>{
+      setaddModel(true)
+    }
+    const closeaddress=()=>{
+      setaddModel(false)
+    }
+    const changenumber=()=>{
+      setnumModel(true)
+    }
+    const closenumber=()=>{
+      setnumModel(false)
+    }
     const updatepass=()=>{
       if(fetchedpass===curpass){
         if(newpass===newconpass){
@@ -59,13 +98,48 @@ const Account=()=>{
             pass: newpass,
           }),
         })
-        .then(console.log("done"))
-        console.log(fetchedpass)
       }
- }     
+ }    
       else{
         console.log("incorrect current password")
       }
+    }
+    const updateusername=()=>{
+      fetch("http://localhost:9000/account/changeusername?id="+user.user, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+           username: newusername,
+        }),
+      })
+    }
+    const updatebday=()=>{
+      fetch("http://localhost:9000/account/changebday?id="+user.user, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          newbirthday: newbday,
+        }),
+      })
+    }
+
+    const updatenum=()=>{
+       fetch("http://localhost:9000/account/changenumber?id="+user.user, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          newNumber: newnum,
+        }),
+      })
+    }
+    const updateadd=()=>{
+      fetch("http://localhost:9000/account/changeaddress?id="+user.user, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          newadd: newadd,
+        }),
+      })
     }
     return(
       <>
@@ -73,15 +147,16 @@ const Account=()=>{
       <Navbar ispage={[false, false, true]}/>
           
        <Grid container alignItems="center" justifyContent="center">
-          <Grid  marginTop='2vh'><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {user.user}</b></Typography></Grid></Grid> 
+          <Grid  marginTop='2vh'><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {username}</b></Typography></Grid></Grid> 
           <Grid item id="profileImage">{user.user[0]}</Grid>   
-          <Grid container alignItems="center" justifyContent="center" marginLeft='40%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b>Birthday:</b> {birthday}</Typography></Grid>
-          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b> Address:</b> {address}</Typography></Grid>
+          <Grid container alignItems="center" justifyContent="center" marginLeft='40%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Birthday:</b> {birthday}       <EditIcon onClick={changebday}></EditIcon></Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b> Address:</b> {address}       <EditIcon onClick={changeaddress}></EditIcon></Typography></Grid>
 
-          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Phone Number:</b> {number}</Typography></Grid>
-          <Grid item xs={12}marginTop='2vh'> <Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Credit Card:</b> {cc}</Typography></Grid>
+          <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Phone Number:</b> {number}       <EditIcon onClick={changenumber}></EditIcon></Typography></Grid>
        
           <Grid item xs={12}marginTop='2vh'><Button style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} variant="contained" size='small' onClick={changepass}>Change Passsword</Button></Grid>
+          <Grid item xs={12}marginTop='2vh'><Button style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} variant="contained" size='small' onClick={changeuser}>Change Username</Button></Grid>
+
           <br></br>
           <br></br>
           </Grid> 
@@ -97,6 +172,41 @@ const Account=()=>{
               <Grid item marginLeft='12%'> <TextField placeholder="Confirm New Password"onChange={(e)=>{setNewConPass(e.target.value)}}></TextField></Grid>
               <br/>
               <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updatepass}>Change Passsword</Button></Grid>
+              </DialogContent>
+          </Dialog>
+          <Dialog open={bdaymodel}>
+          <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closebday}></ClearIcon></Grid>
+            <DialogTitle variant="h4"><b>Change Birthday</b></DialogTitle>
+            <DialogContent>
+              <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Birthday" onChange={(e)=>{setNewBday(e.target.value)}}></TextField></Grid>
+              <br/>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updatebday}>Change bday</Button></Grid>
+              </DialogContent>
+          </Dialog>
+          <Dialog open={nummodel}>
+          <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closenumber}></ClearIcon></Grid>
+            <DialogTitle variant="h4"><b>Change Number</b></DialogTitle>
+            <DialogContent>
+              <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Number" onChange={(e)=>{setNewNum(e.target.value)}}></TextField></Grid>
+              <br/>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updatenum}>Change number</Button></Grid>
+              </DialogContent>
+          </Dialog> <Dialog open={addmodel}>
+          <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closeaddress}></ClearIcon></Grid>
+            <DialogTitle variant="h4"><b>Change Address</b></DialogTitle>
+            <DialogContent>
+              <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Address" onChange={(e)=>{setNewAdd(e.target.value)}}></TextField></Grid>
+              <br/>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updateadd}>Change Address</Button></Grid>
+              </DialogContent>
+          </Dialog>
+          <Dialog open={usernamemodel}>
+          <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closeuser}></ClearIcon></Grid>
+            <DialogTitle variant="h4"><b>Change Username</b></DialogTitle>
+            <DialogContent>
+              <Grid item maxWidth='100%' marginLeft='12%'><TextField placeholder="Enter New Username" onChange={(e)=>{setNewUserName(e.target.value)}}></TextField></Grid>
+              <br/>
+              <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={updateusername}>Change Username</Button></Grid>
               </DialogContent>
           </Dialog>
       </>

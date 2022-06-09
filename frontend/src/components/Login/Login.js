@@ -30,7 +30,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         for (let i = 0; i < data.result.length; i++) {
-          if (data.result[i].id === username) {
+          if (data.result[i].username === username) {
               console.log("Username correct");
             if (data.result[i].password === password) {
               setUser(data.result[i].id);
