@@ -125,6 +125,10 @@ const Homepage = () => {
     );
   };
 
+  const backToShopping = () => {
+    setProductSelected(false);
+  }
+
   const search = () => {
     const searchedFor = [];
     const searchStack1 = [];
@@ -323,6 +327,7 @@ const Homepage = () => {
               <Typography variant="h5">
                 Estimated Delivery Time: {object.shippingTime}
               </Typography>
+              <Button onClick={backToShopping}>Go Back</Button>
             </Stack>
           </Grid>
         </Grid>
