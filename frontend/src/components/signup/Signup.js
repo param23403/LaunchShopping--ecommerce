@@ -21,7 +21,7 @@ function Signup() {
       .then((res) => res.json())
       .then((data) => {
         for (let i = 0; i < data.result.length; i++) {
-          if (data.result[i].id === textFieldRefUsername.current.value) {
+          if (data.result[i].username === textFieldRefUsername.current.value) {
             setModalIsOpen(true);
             return;
           }
