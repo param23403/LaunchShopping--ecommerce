@@ -103,8 +103,7 @@ const Homepage = () => {
       fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
-          object.likes = datas.likes;
-          console.log(object.likes);
+          object.likes++;
           setLiked(true);
         })
     );
@@ -120,8 +119,7 @@ const Homepage = () => {
       fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
-          object.likes = datas.likes;
-          console.log(object.likes);
+          object.likes--;
           setLiked(false);
         })
     );
