@@ -1,20 +1,50 @@
 import Navbar from "../Navbar/Navbar";
-import { Grid, InputBase, IconButton, Card, Stack } from "@mui/material";
+import {
+  Grid,
+  InputBase,
+  IconButton,
+  Card,
+  Stack,
+  Typography,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState, useRef } from "react";
 import Product from "./Product";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import { display } from "@mui/system";
 
 const stack1 = [];
 const stack2 = [];
 const stack3 = [];
 const stack4 = [];
+let object = null;
+
 const Homepage = () => {
   const [stateStack1, setStateStack1] = useState([]);
   const [stateStack2, setStateStack2] = useState([]);
   const [stateStack3, setStateStack3] = useState([]);
   const [stateStack4, setStateStack4] = useState([]);
   const [productSelected, setProductSelected] = useState(false);
+  const [keys, setKeys] = useState();
+  const [liked, setLiked] = useState(false);
+  const [rendering, setRendering] = useState("");
   const textFieldRefSearch = useRef(null);
+  const [category, setCategory] = useState('');
+
+  useEffect(() => {
+    fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+      .then((res) => res.json())
+      .then((data) => {
+        object = data;
+        setRendering(object.name);
+      });
+  }, [keys]);
 
   useEffect(() => {
     fetch("http://localhost:9000/shopping/products")
@@ -69,6 +99,42 @@ const Homepage = () => {
         setStateStack4(stack4);
       });
   }, []);
+
+  const like = () => {
+    const change = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: object.id }),
+    };
+    fetch("http://localhost:9000/shopping/like", change).then(
+      fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+        .then((res) => res.json())
+        .then((datas) => {
+          object.likes++;
+          setLiked(true);
+        })
+    );
+  };
+
+  const delike = () => {
+    const change = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: object.id }),
+    };
+    fetch("http://localhost:9000/shopping/delike", change).then(
+      fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+        .then((res) => res.json())
+        .then((datas) => {
+          object.likes--;
+          setLiked(false);
+        })
+    );
+  };
+
+  const backToShopping = () => {
+    setProductSelected(false);
+  };
 
   const search = () => {
     const searchedFor = [];
@@ -131,6 +197,10 @@ const Homepage = () => {
     setStateStack4(searchStack4);
   };
 
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
+
   return (
     <>
       <Navbar ispage={[true, false, false]} />
@@ -154,7 +224,21 @@ const Homepage = () => {
               </IconButton>
             </Card>
           </Grid>
-          <Grid item xs={2}></Grid>
+          <Grid item xs={2}>
+            <FormControl fullWidth>
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={category}
+                label="Category"
+                onChange={handleChange}
+              >
+                <MenuItem value={'men pants'}>Men's Pants</MenuItem>
+                <MenuItem value={'dress'}>Women's Dress</MenuItem>
+                <MenuItem value={'men shorts'}>Men's Shorts</MenuItem>
+                <MenuItem value={'men shirt'}>Men's Shirts</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
           <Grid item xs={8}>
             <Grid
               container
@@ -170,6 +254,7 @@ const Homepage = () => {
                       name={good.name}
                       price={good.price}
                       img={good.img}
+                      setKeys={setKeys}
                       setSelected={setProductSelected}
                     />
                   ))}
@@ -184,6 +269,7 @@ const Homepage = () => {
                       name={good.name}
                       price={good.price}
                       img={good.img}
+                      setKeys={setKeys}
                       setSelected={setProductSelected}
                     />
                   ))}
@@ -198,6 +284,7 @@ const Homepage = () => {
                       name={good.name}
                       price={good.price}
                       img={good.img}
+                      setKeys={setKeys}
                       setSelected={setProductSelected}
                     />
                   ))}
@@ -212,6 +299,7 @@ const Homepage = () => {
                       name={good.name}
                       price={good.price}
                       img={good.img}
+                      setKeys={setKeys}
                       setSelected={setProductSelected}
                     />
                   ))}
@@ -223,11 +311,51 @@ const Homepage = () => {
         </Grid>
       )}
       {productSelected && (
-        <div>
-          <h1>
-            <strong>This is a really cool Product!</strong>
-          </h1>
-        </div>
+        <Grid container>
+          <Grid item>
+            <img src={object.img}/>
+          </Grid>
+          <Grid item>
+            <Stack>
+              <Typography variant="h6">{object.name}</Typography>
+              <Typography variant="h3">US: ${object.price}</Typography>
+              <Typography variant="h6">Likes:{object.likes}</Typography>
+              <Typography variant="h6">
+                Do you like this product?
+                {!liked && (
+                  <IconButton
+                    type="submit"
+                    sx={{ p: "10px" }}
+                    aria-label="like"
+                    onClick={like}
+                  >
+                    <ThumbUpOffAltIcon />
+                  </IconButton>
+                )}
+                {liked && (
+                  <IconButton
+                    type="submit"
+                    sx={{ p: "10px" }}
+                    aria-label="like"
+                    onClick={delike}
+                  >
+                    <ThumbUpIcon />
+                  </IconButton>
+                )}
+              </Typography>
+              <Typography variant="p">{object.bio}</Typography>
+              <Button>Add to Cart</Button>
+              <Button>Buy Now</Button>
+              <Typography variant="h5">
+                Shipping Cost: ${object.shippingCost}
+              </Typography>
+              <Typography variant="h5">
+                Estimated Delivery Time: {object.shippingTime}
+              </Typography>
+              <Button onClick={backToShopping}>Go Back</Button>
+            </Stack>
+          </Grid>
+        </Grid>
       )}
     </>
   );

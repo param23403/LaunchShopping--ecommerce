@@ -2,6 +2,7 @@ import { Button, Card, Typography } from "@mui/material";
 
 function Product(props) {
   const update = () => {
+    props.setKeys(props.id);
     props.setSelected(true);
   };
 
@@ -22,7 +23,7 @@ function Product(props) {
       }}
       onClick={update}
     >
-      <Card>
+      <Card style={{backgroundColor:"white" , borderStyle:"solid", borderColor:"black", boxShadow:"initial", borderWidth:"4px"}}>
         <img
           src={props.img}
           alt=""
@@ -30,7 +31,7 @@ function Product(props) {
           m={2}
         />
         <Typography
-          style={{ fontFamily: "open sans", justifyContent: "center" }}
+          style={{ fontFamily: "open sans", justifyContent: "center" , fontStyle:"bold"}}
           variant="p"
         >
           {props.name}
