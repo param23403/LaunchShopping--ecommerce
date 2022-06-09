@@ -4,7 +4,7 @@ var fetch = require("node-fetch");
 const db = require("./firebase");
 
 const {
-  setDoc, getDocs, collection, doc, updateDoc, 
+  setDoc, getDocs, getDoc, collection, doc, updateDoc, increment, 
 } = require("firebase/firestore");
 const { async } = require("@firebase/util");
 
@@ -42,6 +42,23 @@ router.get("/products", async (req, res, next) => {
         products.push({ id: item.id, ...item.data() })
     )
     res.json({ result: products })
+});
+
+router.get("/productInfo", async (req, res, next) => {
+    const document = await getDoc(doc(db, "Products", req.query.id));
+    res.json({ id: document.id, ...document.data() })
+});
+
+router.put("/like", async (req, res, next) => {
+    await updateDoc(doc(db, "Products", req.body.id), {
+        likes: increment(1)
+    });
+});
+
+router.put("/delike", async (req, res, next) => {
+    await updateDoc(doc(db, "Products", req.body.id), {
+        likes: increment(-1)
+    });
 });
 
 module.exports = router;
