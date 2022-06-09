@@ -41,7 +41,7 @@ function Signup() {
               phoneNumber: textFieldRefPhoneNumber.current.value,
             }),
           }
-        ).then((res) => console.log(res.json())).then(navigate('/shopping'));
+        ).then((res) => console.log(res.json())).then(navigate('/login'));
       });
   };
 

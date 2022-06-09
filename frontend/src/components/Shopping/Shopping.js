@@ -7,18 +7,24 @@ import {
   Stack,
   Typography,
   Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState, useRef } from "react";
 import Product from "./Product";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import { display } from "@mui/system";
 
 const stack1 = [];
 const stack2 = [];
 const stack3 = [];
 const stack4 = [];
 let object = null;
+
 const Homepage = () => {
   const [stateStack1, setStateStack1] = useState([]);
   const [stateStack2, setStateStack2] = useState([]);
@@ -29,6 +35,7 @@ const Homepage = () => {
   const [liked, setLiked] = useState(false);
   const [rendering, setRendering] = useState("");
   const textFieldRefSearch = useRef(null);
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
@@ -103,8 +110,7 @@ const Homepage = () => {
       fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
-          object.likes = datas.likes;
-          console.log(object.likes);
+          object.likes++;
           setLiked(true);
         })
     );
@@ -120,11 +126,14 @@ const Homepage = () => {
       fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
-          object.likes = datas.likes;
-          console.log(object.likes);
+          object.likes--;
           setLiked(false);
         })
     );
+  };
+
+  const backToShopping = () => {
+    setProductSelected(false);
   };
 
   const search = () => {
@@ -201,6 +210,8 @@ const Homepage = () => {
       existing.push(String(priceID));
       localStorage.setItem('priceIDs', existing.toString());
     }
+  const handleChange = (event) => {
+    setCategory(event.target.value);
   };
 
   return (
@@ -226,7 +237,21 @@ const Homepage = () => {
               </IconButton>
             </Card>
           </Grid>
-          <Grid item xs={2}></Grid>
+          <Grid item xs={2}>
+            <FormControl fullWidth>
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={category}
+                label="Category"
+                onChange={handleChange}
+              >
+                <MenuItem value={'men pants'}>Men's Pants</MenuItem>
+                <MenuItem value={'dress'}>Women's Dress</MenuItem>
+                <MenuItem value={'men shorts'}>Men's Shorts</MenuItem>
+                <MenuItem value={'men shirt'}>Men's Shirts</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
           <Grid item xs={8}>
             <Grid
               container
@@ -301,7 +326,7 @@ const Homepage = () => {
       {productSelected && (
         <Grid container>
           <Grid item>
-            <img src={object.img} />
+            <img src={object.img}/>
           </Grid>
           <Grid item>
             <Stack>
@@ -340,12 +365,14 @@ const Homepage = () => {
               <Typography variant="h5">
                 Estimated Delivery Time: {object.shippingTime}
               </Typography>
+              <Button onClick={backToShopping}>Go Back</Button>
             </Stack>
           </Grid>
         </Grid>
       )}
     </>
-  );
-};
+    );
+  };
+}
 
 export default Homepage;
