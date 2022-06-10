@@ -61,4 +61,33 @@ router.put("/delike", async (req, res, next) => {
     });
 });
 
+//account
+
+router.post('/changenumber',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        phoneNumber: req.body.newNumber
+    });
+})
+
+router.post('/changepassword',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        password: req.body.pass
+    });
+})
+router.post('/changeusername',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        username: req.body.username
+    });
+})
+router.post('/changebday',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        birthday: req.body.newbirthday
+    });
+})
+router.post('/changeaddress',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        defaultAddress: req.body.newadd
+    });
+})
+
 module.exports = router;

@@ -10,7 +10,6 @@ var usersRouter = require('./routes/users');
 var shoppingRouter = require('./routes/shopping');
 var loginRouter = require('./routes/auth')
 var checklogRouter = require('./routes/auth')
-var accountRouter = require('./routes/account')
 
 var app = express();
 

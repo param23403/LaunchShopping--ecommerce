@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useState} from "react";
+import {useEffect, useContext, useState} from "react";
 import "./Account.css";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -58,36 +58,57 @@ const Account=()=>{
     
     },[])
     
+    const update = () => {
+      fetch("http://localhost:9000/shopping/usernames")
+      .then((res) => res.json())
+      .then((data)=>{
+        for(let i =0;i<data.result.length;i++) {
+          if(user.user==data.result[i].id){
+            setUsername(data.result[i].username)
+            setBirthday(data.result[i].birthday)
+            setAddress(data.result[i].defaultAddress)
+            setNumber(data.result[i].phoneNumber)
+            setCC(data.result[i].defaultCreditCard)
+            setFetchedpass(data.result[i].password)
+          }
+        }
+      })
+    };
 
     const changepass=()=>{
       setPassModel(true)
     }
     const closepass=()=>{
       setPassModel(false)
+      update();
     }
     const changeuser=()=>{
       setUserModel(true)
     }
     const closeuser=()=>{
       setUserModel(false)
+      update();
     }
     const changebday=()=>{
       setbdayModel(true)
     }
     const closebday=()=>{
       setbdayModel(false)
+      update();
     } 
     const changeaddress=()=>{
       setaddModel(true)
     }
     const closeaddress=()=>{
       setaddModel(false)
+      update();
     }
     const changenumber=()=>{
       setnumModel(true)
     }
     const closenumber=()=>{
       setnumModel(false)
+      update();
     }
     const updatepass=()=>{
       if(fetchedpass===curpass){
