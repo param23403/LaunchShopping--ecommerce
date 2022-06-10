@@ -3,9 +3,10 @@ import "./Account.css";
 import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
-import {Button, Dialog,Typography,Container,Grid, DialogTitle, DialogContent, TextField} from '@mui/material'
+import {Box, Paper, Button, Dialog,Typography,Grid, DialogTitle, DialogContent, TextField} from '@mui/material'
 import ClearIcon from '@mui/icons-material/Clear';
 import EditIcon from '@mui/icons-material/Edit';
+import { sizing } from '@mui/system';
 
 const Account=()=>{
     const user = useContext(UserContext);
@@ -145,21 +146,22 @@ const Account=()=>{
       <>
       
       <Navbar ispage={[false, false, true]}/>
-          
-       <Grid container alignItems="center" justifyContent="center">
-          <Grid  marginTop='2vh'><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {username}</b></Typography></Grid></Grid> 
+      
+      <Box sx={{width:'50%', alignitems:'center' }} p={5} px='25%'>
+        <Paper>
+          <Box p={5} textAlign='center' display='inline-block' alignItems='center'>
+          <Grid  marginTop='2vh'><Typography style={{fontFamily: "open sans"}}variant='h3'><b>Welcome {username}</b></Typography></Grid>
           <Grid item id="profileImage">{user.user[0]}</Grid>   
-          <Grid container alignItems="center" justifyContent="center" marginLeft='40%'> <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Birthday:</b> {birthday}       <EditIcon onClick={changebday}></EditIcon></Typography></Grid>
+          <Grid container alignItems="center" justifyContent="center" > <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Birthday:</b> {birthday}       <EditIcon onClick={changebday}></EditIcon></Typography></Grid>
           <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}><b> Address:</b> {address}       <EditIcon onClick={changeaddress}></EditIcon></Typography></Grid>
 
           <Grid item xs={12}marginTop='2vh'><Typography variant='h6'style={{fontFamily: "open sans"}}> <b>Phone Number:</b> {number}       <EditIcon onClick={changenumber}></EditIcon></Typography></Grid>
        
           <Grid item xs={12}marginTop='2vh'><Button style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} variant="contained" size='small' onClick={changepass}>Change Passsword</Button></Grid>
           <Grid item xs={12}marginTop='2vh'><Button style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} variant="contained" size='small' onClick={changeuser}>Change Username</Button></Grid>
-
           <br></br>
           <br></br>
-          </Grid> 
+          </Grid> </Box></Paper></Box>
           <Dialog open={passmodel}>
           <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closepass}></ClearIcon></Grid>
             <DialogTitle variant="h4"><b>Change Password</b></DialogTitle>
@@ -209,7 +211,7 @@ const Account=()=>{
               <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={(e)=>{updateusername();closeuser(e)}}>Change Username</Button></Grid>
               </DialogContent>
           </Dialog>
-      </>
+            </>
 )};
 
 
