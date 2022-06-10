@@ -26,6 +26,12 @@ const Navbar = (props) => {
         if (localStorage.getItem('priceIDs')) {
             localStorage.removeItem('priceIDs');
         }
+        if (localStorage.getItem('price')) {
+            localStorage.removeItem('price');
+        }
+        if (localStorage.getItem('name')) {
+            localStorage.removeItem('name');
+        }
         setUser("");
         navigate("/");
     }

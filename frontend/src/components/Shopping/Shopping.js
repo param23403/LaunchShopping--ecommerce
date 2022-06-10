@@ -201,10 +201,7 @@ const Homepage = () => {
     setCategory(event.target.value);
   };
 
-  const toCart = (priceID) => {
-    console.log("we are inside toCart function")
-    console.log(priceID);
-    console.log(typeof priceID);
+  const toCart = (priceID, price, name) => {
     if (!localStorage.getItem('priceIDs')) {
       localStorage.setItem('priceIDs', String(priceID));
     }
@@ -213,6 +210,26 @@ const Homepage = () => {
       existing = existing ? existing.split(',') : [];
       existing.push(String(priceID));
       localStorage.setItem('priceIDs', existing.toString());
+    }
+    //now add price of item here
+    if (!localStorage.getItem('price')) {
+      localStorage.setItem('price', String(price));
+    }
+    else {
+      let existing = localStorage.getItem('price');
+      existing = existing ? existing.split(',') : [];
+      existing.push(String(price));
+      localStorage.setItem('price', existing.toString());
+    }
+    //add item name here
+    if (!localStorage.getItem('name')) {
+      localStorage.setItem('name', String(name));
+    }
+    else {
+      let existing = localStorage.getItem('name');
+      existing = existing ? existing.split(',') : [];
+      existing.push(String(name));
+      localStorage.setItem('name', existing.toString());
     }
     window.alert("Successfully added to cart.");
   }
@@ -360,7 +377,7 @@ const Homepage = () => {
                 )}
               </Typography>
               <Typography variant="p">{object.bio}</Typography>
-              <Button onClick={() => toCart(object.priceID)}>Add to Cart</Button>
+              <Button onClick={() => toCart(object.priceID, object.name, object.price)}>Add to Cart</Button>
               <Button>Buy Now</Button>
               <Typography variant="h5">
                 Shipping Cost: ${object.shippingCost}
