@@ -59,7 +59,7 @@ const Account=()=>{
     },[])
     
     const update = () => {
-      fetch("http://localhost:9000/shopping/usernames")
+      fetch("/shopping/usernames")
       .then((res) => res.json())
       .then((data)=>{
         for(let i =0;i<data.result.length;i++) {
@@ -113,7 +113,7 @@ const Account=()=>{
     const updatepass=()=>{
       if(fetchedpass===curpass){
         if(newpass===newconpass){
-        fetch("/account/changepassword?id="+user.user, {
+        fetch("/shopping/changepassword?id="+user.user, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -130,7 +130,7 @@ const Account=()=>{
       }
     }
     const updateusername=()=>{
-      fetch("/account/changeusername?id="+user.user, {
+      fetch("/shopping/changeusername?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -139,7 +139,7 @@ const Account=()=>{
       })
     }
     const updatebday=()=>{
-      fetch("/account/changebday?id="+user.user, {
+      fetch("/shopping/changebday?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -149,7 +149,7 @@ const Account=()=>{
     }
 
     const updatenum=()=>{
-       fetch("/account/changenumber?id="+user.user, {
+       fetch("/shopping/changenumber?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -158,7 +158,7 @@ const Account=()=>{
       })
     }
     const updateadd=()=>{
-      fetch("/account/changeaddress?id="+user.user, {
+      fetch("/shopping/changeaddress?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
