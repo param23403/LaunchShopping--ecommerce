@@ -26,8 +26,8 @@ const Account=()=>{
     const[newpass, setNewPass] = useState()
     const[newconpass, setNewConPass] = useState()
     const[fetchedpass,setFetchedpass] = useState()
-
-
+    const[errormodel,seterrorModel] = useState()
+    const[passerror,setpasserror] = useState()
     const[newbday,setNewBday]=useState()
     const[newadd,setNewAdd]=useState()
     const[newnum,setNewNum]=useState()
@@ -100,9 +100,12 @@ const Account=()=>{
           }),
         })
       }
+      else{
+        setpasserror(true)
+      }
  }    
       else{
-        console.log("incorrect current password")
+        seterrorModel(true)
       }
     }
     const updateusername=()=>{
@@ -141,6 +144,12 @@ const Account=()=>{
           newadd: newadd,
         }),
       })
+    }
+    const closeerror=()=>{
+      seterrorModel(false)
+    }
+    const closepasserror=()=>{
+      setpasserror(false)
     }
     return(
       <>
@@ -210,6 +219,16 @@ const Account=()=>{
               <br/>
               <Grid item marginLeft='20%'><Button variant="contained"style={{ backgroundColor: "#5BAFFF", fontFamily:'open sans' }} onClick={(e)=>{updateusername();closeuser(e)}}>Change Username</Button></Grid>
               </DialogContent>
+          </Dialog>
+          <Dialog open={errormodel}>
+          <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closeerror}></ClearIcon></Grid>
+          <DialogTitle>Error</DialogTitle>
+            <DialogContent sx={{color:'red'}}>Please enter the correct current password</DialogContent>
+          </Dialog>
+          <Dialog open={passerror}>
+          <Grid item marginLeft='92%' marginTop='2%'><ClearIcon onClick={closepasserror}></ClearIcon></Grid>
+          <DialogTitle>Error</DialogTitle>
+            <DialogContent sx={{color:'red'}}>Please confirm your new password correctly</DialogContent>
           </Dialog>
             </>
 )};
