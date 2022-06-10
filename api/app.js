@@ -6,14 +6,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var app = express();
 
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var shoppingRouter = require('./routes/shopping');
 var loginRouter = require('./routes/auth')
 var checklogRouter = require('./routes/auth')
+var accountRouter = require('./routes/account')
 
-var app = express();
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -37,7 +39,7 @@ app.use('/auth',loginRouter)
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', checklogRouter);
-
+app.use('/account',accountRouter)
 // Stripe -----------------------------
 app.use(express.static('public'));
 

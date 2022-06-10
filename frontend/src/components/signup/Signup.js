@@ -17,17 +17,17 @@ function Signup() {
   let navigate = useNavigate();
 
   const createAccount = () => {
-    fetch("http://localhost:9000/shopping/usernames")
+    fetch("/shopping/usernames")
       .then((res) => res.json())
       .then((data) => {
         for (let i = 0; i < data.result.length; i++) {
-          if (data.result[i].id === textFieldRefUsername.current.value) {
+          if (data.result[i].username === textFieldRefUsername.current.value) {
             setModalIsOpen(true);
             return;
           }
         }
         fetch(
-          "http://localhost:9000/shopping/userCreation?id=" +
+          "/shopping/userCreation?id=" +
             textFieldRefUsername.current.value,
           {
             method: "POST",

@@ -11,11 +11,11 @@ const stack1 = [];
 const stack2 = [];
 const stack3 = [];
 const stack4 = [];
-const categorizedStack1 = [];	
-const categorizedStack2 = [];	
-const categorizedStack3 = [];	
-const categorizedStack4 = [];	
-let object = null;	
+const categorizedStack1 = [];
+const categorizedStack2 = [];
+const categorizedStack3 = [];
+const categorizedStack4 = [];
+let object = null;
 let categorized = false;
 
 const Homepage = () => {
@@ -31,7 +31,7 @@ const Homepage = () => {
   const [category, setCategory] = useState('');
 
   useEffect(() => {
-    fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+    fetch("/shopping/productInfo?id=" + keys)
       .then((res) => res.json())
       .then((data) => {
         object = data;
@@ -40,7 +40,7 @@ const Homepage = () => {
   }, [keys]);
 
   useEffect(() => {
-    fetch("http://localhost:9000/shopping/products")
+    fetch("/shopping/products")
       .then((res) => res.json())
       .then((data) => {
         let length = data.result.length;
@@ -99,8 +99,8 @@ const Homepage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: object.id }),
     };
-    fetch("http://localhost:9000/shopping/like", change).then(
-      fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+    fetch("/shopping/like", change).then(
+      fetch("/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
           object.likes++;
@@ -115,8 +115,8 @@ const Homepage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: object.id }),
     };
-    fetch("http://localhost:9000/shopping/delike", change).then(
-      fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+    fetch("/shopping/delike", change).then(
+      fetch("s/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
           object.likes--;
@@ -135,61 +135,61 @@ const Homepage = () => {
     const searchStack2 = [];
     const searchStack3 = [];
     const searchStack4 = [];
-    if (categorized) {	
-      for (let i = 0; i < categorizedStack1.length; i++) {	
-        if (categorizedStack1[i].name.includes(textFieldRefSearch.current.value)) {	
-          searchedFor.push(categorizedStack1[i]);	
-        }	
-      }	
-      for (let i = 0; i < categorizedStack2.length; i++) {	
-        if (categorizedStack2[i].name.includes(textFieldRefSearch.current.value)) {	
-          searchedFor.push(categorizedStack2[i]);	
-        }	
-      }	
-      for (let i = 0; i < categorizedStack3.length; i++) {	
-        if (categorizedStack3[i].name.includes(textFieldRefSearch.current.value)) {	
-          searchedFor.push(categorizedStack3[i]);	
-        }	
-      }	
-      for (let i = 0; i < categorizedStack4.length; i++) {	
-        if (categorizedStack4[i].name.includes(textFieldRefSearch.current.value)) {	
-          searchedFor.push(categorizedStack4[i]);	
-        }	
-      }	
-      let length = searchedFor.length;	
-      const stack4length = Math.floor(length / 4);	
-      length = length - stack4length;	
-      const stack3length = Math.floor(length / 3);	
-      length = length - stack3length;	
-      const stack2length = Math.floor(length / 2);	
-      length = length - stack2length;	
-      const stack1length = Math.floor(length / 1);	
-      length = length - stack1length;	
-      for (let i = 0; i < stack1length; i++) {	
-        searchStack1[i] = searchedFor[i];	
-      }	
-      for (let i = stack1length; i < stack2length + stack1length; i++) {	
-        searchStack2[i] = searchedFor[i];	
-      }	
-      for (	
-        let i = stack2length + stack1length;	
-        i < stack3length + stack2length + stack1length;	
-        i++	
-      ) {	
-        searchStack3[i] = searchedFor[i];	
-      }	
-      for (	
-        let i = stack3length + stack2length + stack1length;	
-        i < stack4length + stack3length + stack2length + stack1length;	
-        i++	
-      ) {	
-        searchStack4[i] = searchedFor[i];	
-      }	
-      setStateStack1(searchStack1);	
-      setStateStack2(searchStack2);	
-      setStateStack3(searchStack3);	
-      setStateStack4(searchStack4);	
-      return;	
+    if (categorized) {
+      for (let i = 0; i < categorizedStack1.length; i++) {
+        if (categorizedStack1[i].name.includes(textFieldRefSearch.current.value)) {
+          searchedFor.push(categorizedStack1[i]);
+        }
+      }
+      for (let i = 0; i < categorizedStack2.length; i++) {
+        if (categorizedStack2[i].name.includes(textFieldRefSearch.current.value)) {
+          searchedFor.push(categorizedStack2[i]);
+        }
+      }
+      for (let i = 0; i < categorizedStack3.length; i++) {
+        if (categorizedStack3[i].name.includes(textFieldRefSearch.current.value)) {
+          searchedFor.push(categorizedStack3[i]);
+        }
+      }
+      for (let i = 0; i < categorizedStack4.length; i++) {
+        if (categorizedStack4[i].name.includes(textFieldRefSearch.current.value)) {
+          searchedFor.push(categorizedStack4[i]);
+        }
+      }
+      let length = searchedFor.length;
+      const stack4length = Math.floor(length / 4);
+      length = length - stack4length;
+      const stack3length = Math.floor(length / 3);
+      length = length - stack3length;
+      const stack2length = Math.floor(length / 2);
+      length = length - stack2length;
+      const stack1length = Math.floor(length / 1);
+      length = length - stack1length;
+      for (let i = 0; i < stack1length; i++) {
+        searchStack1[i] = searchedFor[i];
+      }
+      for (let i = stack1length; i < stack2length + stack1length; i++) {
+        searchStack2[i] = searchedFor[i];
+      }
+      for (
+        let i = stack2length + stack1length;
+        i < stack3length + stack2length + stack1length;
+        i++
+      ) {
+        searchStack3[i] = searchedFor[i];
+      }
+      for (
+        let i = stack3length + stack2length + stack1length;
+        i < stack4length + stack3length + stack2length + stack1length;
+        i++
+      ) {
+        searchStack4[i] = searchedFor[i];
+      }
+      setStateStack1(searchStack1);
+      setStateStack2(searchStack2);
+      setStateStack3(searchStack3);
+      setStateStack4(searchStack4);
+      return;
     }
     for (let i = 0; i < stack1.length; i++) {
       if (stack1[i].name.includes(textFieldRefSearch.current.value)) {
@@ -247,77 +247,79 @@ const Homepage = () => {
   };
 
   const handleChange = (event) => {
-    if(event.target.value === "all") {	
-      setStateStack1(stack1);	
-      setStateStack2(stack2);	
-      setStateStack3(stack3);	
-      setStateStack4(stack4);	
-      categorized = false;	
-      textFieldRefSearch.current.value = "";	
-      setCategory(event.target.value);	
-      return;	
-  }	
-  const catFor = [];	
-  for (let i = 0; i < stack1.length; i++) {	
-    if (stack1[i].category === (event.target.value)) {	
-      catFor.push(stack1[i]);	
-    }	
-  }	
-  for (let i = 0; i < stack2.length; i++) {	
-    if (stack2[i].category === (event.target.value)) {	
-      catFor.push(stack2[i]);	
-    }	
-  }	
-  for (let i = 0; i < stack3.length; i++) {	
-    if (stack3[i].category === (event.target.value)) {	
-      catFor.push(stack3[i]);	
-    }	
-  }	
-  for (let i = 0; i < stack4.length; i++) {	
-    if (stack4[i].category === (event.target.value)) {	
-      catFor.push(stack4[i]);	
-    }	
-  }	
-  let length = catFor.length;	
-  const stack4length = Math.floor(length / 4);	
-  length = length - stack4length;	
-  const stack3length = Math.floor(length / 3);	
-  length = length - stack3length;	
-  const stack2length = Math.floor(length / 2);	
-  length = length - stack2length;	
-  const stack1length = Math.floor(length / 1);	
-  length = length - stack1length;	
-  categorizedStack1.splice(0, categorizedStack1.length);	
-  categorizedStack2.splice(0, categorizedStack2.length);	
-  categorizedStack3.splice(0, categorizedStack3.length);	
-  categorizedStack4.splice(0, categorizedStack4.length);	
-  for (let i = 0; i < stack1length; i++) {	
-    categorizedStack1.push(catFor[i]);	
-  }	
-  for (let i = stack1length; i < stack2length + stack1length; i++) {	
-    categorizedStack2.push(catFor[i]);	
-  }	
-  for (	
-    let i = stack2length + stack1length;	
-    i < stack3length + stack2length + stack1length;	
-    i++	
-  ) {	
-    categorizedStack3.push(catFor[i]);	
-  }	
-  for (	
-    let i = stack3length + stack2length + stack1length;	
-    i < stack4length + stack3length + stack2length + stack1length;	
-    i++	
-  ) {	
-    categorizedStack4.push(catFor[i]);	
-  }	
-  categorized = true;	
-  textFieldRefSearch.current.value = "";	
-  setStateStack1(categorizedStack1);	
-  setStateStack2(categorizedStack2);	
-  setStateStack3(categorizedStack3);	
-  setStateStack4(categorizedStack4);	
-  setCategory(event.target.value);	
+    
+    if(event.target.value === "all") {
+        setStateStack1(stack1);
+        setStateStack2(stack2);
+        setStateStack3(stack3);
+        setStateStack4(stack4);
+        categorized = false;
+        textFieldRefSearch.current.value = "";
+        setCategory(event.target.value);
+        return;
+    }
+
+    const catFor = [];
+    for (let i = 0; i < stack1.length; i++) {
+      if (stack1[i].category === (event.target.value)) {
+        catFor.push(stack1[i]);
+      }
+    }
+    for (let i = 0; i < stack2.length; i++) {
+      if (stack2[i].category === (event.target.value)) {
+        catFor.push(stack2[i]);
+      }
+    }
+    for (let i = 0; i < stack3.length; i++) {
+      if (stack3[i].category === (event.target.value)) {
+        catFor.push(stack3[i]);
+      }
+    }
+    for (let i = 0; i < stack4.length; i++) {
+      if (stack4[i].category === (event.target.value)) {
+        catFor.push(stack4[i]);
+      }
+    }
+    let length = catFor.length;
+    const stack4length = Math.floor(length / 4);
+    length = length - stack4length;
+    const stack3length = Math.floor(length / 3);
+    length = length - stack3length;
+    const stack2length = Math.floor(length / 2);
+    length = length - stack2length;
+    const stack1length = Math.floor(length / 1);
+    length = length - stack1length;
+    categorizedStack1.splice(0, categorizedStack1.length);
+    categorizedStack2.splice(0, categorizedStack2.length);
+    categorizedStack3.splice(0, categorizedStack3.length);
+    categorizedStack4.splice(0, categorizedStack4.length);
+    for (let i = 0; i < stack1length; i++) {
+      categorizedStack1.push(catFor[i]);
+    }
+    for (let i = stack1length; i < stack2length + stack1length; i++) {
+      categorizedStack2.push(catFor[i]);
+    }
+    for (
+      let i = stack2length + stack1length;
+      i < stack3length + stack2length + stack1length;
+      i++
+    ) {
+      categorizedStack3.push(catFor[i]);
+    }
+    for (
+      let i = stack3length + stack2length + stack1length;
+      i < stack4length + stack3length + stack2length + stack1length;
+      i++
+    ) {
+      categorizedStack4.push(catFor[i]);
+    }
+    categorized = true;
+    textFieldRefSearch.current.value = "";
+    setStateStack1(categorizedStack1);
+    setStateStack2(categorizedStack2);
+    setStateStack3(categorizedStack3);
+    setStateStack4(categorizedStack4);
+    setCategory(event.target.value);
   };
 
   const toCart = (priceID, price, name) => {
@@ -389,6 +391,7 @@ const Homepage = () => {
                 <MenuItem value={'dress'}>Women's Dress</MenuItem>
                 <MenuItem value={'men shorts'}>Men's Shorts</MenuItem>
                 <MenuItem value={'men shirt'}>Men's Shirts</MenuItem>
+
               </Select>
             </FormControl>
           </Grid>
