@@ -4,6 +4,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -37,7 +38,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', checklogRouter);
 app.use('/account',accountRouter)
-app.use(express.static(path.join(__dirname, '../client/build')));
 // Stripe -----------------------------
 app.use(express.static('public'));
 
