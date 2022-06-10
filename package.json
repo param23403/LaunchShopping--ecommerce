@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "stripe": "^9.7.0"
-  }
+  },
+  "scripts": {
+    "start": "node api/bin/www",
+    "heroku-postbuild": "cd backend && npm install && cd ../frontend && npm install && npm run build"
+   }
+   
 }

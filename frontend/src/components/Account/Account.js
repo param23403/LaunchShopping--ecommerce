@@ -41,7 +41,7 @@ const Account=()=>{
     },[]);
    
     useEffect(() => {
-      fetch("http://localhost:9000/shopping/usernames")
+      fetch("/shopping/usernames")
       .then((res) => res.json())
       .then((data)=>{
         for(let i =0;i<data.result.length;i++) {
@@ -92,7 +92,7 @@ const Account=()=>{
     const updatepass=()=>{
       if(fetchedpass===curpass){
         if(newpass===newconpass){
-        fetch("http://localhost:9000/account/changepassword?id="+user.user, {
+        fetch("/account/changepassword?id="+user.user, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -109,7 +109,7 @@ const Account=()=>{
       }
     }
     const updateusername=()=>{
-      fetch("http://localhost:9000/account/changeusername?id="+user.user, {
+      fetch("/account/changeusername?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -118,7 +118,7 @@ const Account=()=>{
       })
     }
     const updatebday=()=>{
-      fetch("http://localhost:9000/account/changebday?id="+user.user, {
+      fetch("/account/changebday?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -128,7 +128,7 @@ const Account=()=>{
     }
 
     const updatenum=()=>{
-       fetch("http://localhost:9000/account/changenumber?id="+user.user, {
+       fetch("/account/changenumber?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -137,7 +137,7 @@ const Account=()=>{
       })
     }
     const updateadd=()=>{
-      fetch("http://localhost:9000/account/changeaddress?id="+user.user, {
+      fetch("/account/changeaddress?id="+user.user, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

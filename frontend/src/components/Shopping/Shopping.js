@@ -38,7 +38,7 @@ const Homepage = () => {
   const [category, setCategory] = useState('');
 
   useEffect(() => {
-    fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+    fetch("/shopping/productInfo?id=" + keys)
       .then((res) => res.json())
       .then((data) => {
         object = data;
@@ -47,7 +47,7 @@ const Homepage = () => {
   }, [keys]);
 
   useEffect(() => {
-    fetch("http://localhost:9000/shopping/products")
+    fetch("/shopping/products")
       .then((res) => res.json())
       .then((data) => {
         let length = data.result.length;
@@ -106,8 +106,8 @@ const Homepage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: object.id }),
     };
-    fetch("http://localhost:9000/shopping/like", change).then(
-      fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+    fetch("/shopping/like", change).then(
+      fetch("/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
           object.likes++;
@@ -122,8 +122,8 @@ const Homepage = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: object.id }),
     };
-    fetch("http://localhost:9000/shopping/delike", change).then(
-      fetch("http://localhost:9000/shopping/productInfo?id=" + keys)
+    fetch("/shopping/delike", change).then(
+      fetch("s/shopping/productInfo?id=" + keys)
         .then((res) => res.json())
         .then((datas) => {
           object.likes--;

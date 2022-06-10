@@ -26,7 +26,7 @@ const Login = () => {
     navigate('/signup')
   }
   const getCreds = () => {
-    fetch("http://localhost:9000/shopping/usernames")
+    fetch("/shopping/usernames")
       .then((res) => res.json())
       .then((data) => {
         for (let i = 0; i < data.result.length; i++) {

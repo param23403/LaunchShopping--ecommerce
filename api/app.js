@@ -37,7 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', checklogRouter);
 app.use('/account',accountRouter)
-
+app.use(express.static(path.join(__dirname, '../client/build')));
 // Stripe -----------------------------
 app.use(express.static('public'));
 

@@ -17,7 +17,7 @@ function Signup() {
   let navigate = useNavigate();
 
   const createAccount = () => {
-    fetch("http://localhost:9000/shopping/usernames")
+    fetch("/shopping/usernames")
       .then((res) => res.json())
       .then((data) => {
         for (let i = 0; i < data.result.length; i++) {
@@ -27,7 +27,7 @@ function Signup() {
           }
         }
         fetch(
-          "http://localhost:9000/shopping/userCreation?id=" +
+          "/shopping/userCreation?id=" +
             textFieldRefUsername.current.value,
           {
             method: "POST",
