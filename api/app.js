@@ -45,16 +45,17 @@ const YOUR_DOMAIN = 'http://localhost:3000';
 
 app.post('/create-checkout-session', async (req, res) => {
   console.log(req.body);
-  //arrayIDs = req.body.priceIDs;
-  //console.log(arrayIDs);
+  console.log(typeof req.body.PriceIDs);
+  console.log(req.body.PriceIDs);
+  IDstring = req.body.PriceIDs;
+  console.log(IDstring);
+  arrayID = IDstring.split(',');
+  line_items_array = [];
+  arrayID.map((price_id) => {
+    line_items_array.push({price: price_id, quantity: 1});
+  })
   const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1L8rpiGUl5wOGSTub6C3LN1c',
-        quantity: 1,
-      },
-    ],
+    line_items: line_items_array,
     mode: 'payment',
     success_url: `${YOUR_DOMAIN}/success`,
     cancel_url: `${YOUR_DOMAIN}/cancelled`,

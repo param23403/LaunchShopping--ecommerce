@@ -197,6 +197,10 @@ const Homepage = () => {
     setStateStack4(searchStack4);
   };
 
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
+
   const toCart = (priceID) => {
     console.log("we are inside toCart function")
     console.log(priceID);
@@ -210,9 +214,8 @@ const Homepage = () => {
       existing.push(String(priceID));
       localStorage.setItem('priceIDs', existing.toString());
     }
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+    window.alert("Successfully added to cart.");
+  }
 
   return (
     <>
@@ -357,7 +360,7 @@ const Homepage = () => {
                 )}
               </Typography>
               <Typography variant="p">{object.bio}</Typography>
-              <Button onClick={toCart(object.priceID)}>Add to Cart</Button>
+              <Button onClick={() => toCart(object.priceID)}>Add to Cart</Button>
               <Button>Buy Now</Button>
               <Typography variant="h5">
                 Shipping Cost: ${object.shippingCost}
@@ -371,8 +374,7 @@ const Homepage = () => {
         </Grid>
       )}
     </>
-    );
-  };
-}
+  );
+};
 
 export default Homepage;
