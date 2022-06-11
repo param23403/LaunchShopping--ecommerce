@@ -1,0 +1,15 @@
+
+  #profileImage {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background: #043d72;
+    font-size: 5rem;
+    color: #fff;
+    text-align: center;
+    line-height: 10rem;
+    margin: 2rem 0;
+    margin-left: 37%;
+    text-transform: uppercase;
+  }

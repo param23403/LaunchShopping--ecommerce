@@ -1,16 +1,11 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Grid,
-  AppBar,
-  Toolbar,
-  Typography,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Box, AppBar, Toolbar, Button } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
 import logo from '../logow.png'
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import "./Login.css"
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
@@ -27,12 +22,15 @@ const Login = () => {
   const landonclick=()=>{
     navigate('/')
   }
+  const goToSignUp=()=>{
+    navigate('/signup')
+  }
   const getCreds = () => {
-    fetch("http://localhost:9000/shopping/usernames")
+    fetch("/shopping/usernames")
       .then((res) => res.json())
       .then((data) => {
         for (let i = 0; i < data.result.length; i++) {
-          if (data.result[i].id === username) {
+          if (data.result[i].username === username) {
               console.log("Username correct");
             if (data.result[i].password === password) {
               setUser(data.result[i].id);
@@ -42,6 +40,19 @@ const Login = () => {
         }
       });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('priceIDs')) {
+      localStorage.removeItem('priceIDs');
+    }
+    if (localStorage.getItem('price')) {
+      localStorage.removeItem('price');
+    }
+    if (localStorage.getItem('name')) {
+      localStorage.removeItem('name');
+    }
+  }, []);
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -51,33 +62,24 @@ const Login = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Grid item marginTop="10vh" marginLeft="45%">
-        <TextField
-          placeholder="Username"
-          color="primary"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        ></TextField>
-      </Grid>
-      <Grid item marginTop="2vh" marginLeft="45%">
-        <TextField
-          placeholder="Password"
-          color="primary"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        ></TextField>
-      </Grid>
-      <Grid marginLeft="48.5%" marginTop="2vh">
-        <Button
-          onClick={getCreds}
-          variant="contained"
-          style={{ backgroundColor: "#5BAFFF" }}
-        >
-          Login
-        </Button>
-      </Grid>
+        <div className='login-form'>
+            <h1 className="loginh">Log In</h1>
+                <div className='form-group'>
+                <input type="text" placeholder="Enter Username" value={username} onChange={(e)=>{{
+                    setUsername(e.target.value); 
+                }}}/>
+                <span className='input-icon'><i className="fa fa-envelope"> <EmailIcon/></i></span>
+                </div>
+                <div className='form-group'>
+                <input type="password" placeholder="Enter Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+                <span className='input-icon'><i className="fa fa-envelope"><LockIcon/></i></span>
+                </div>
+                <Button onClick={getCreds} className='login-btn' variant="contained">Sign In</Button>
+                <p></p>
+                <Button onClick={goToSignUp} className='login-btn' variant="contained">Create Account</Button>
+                
+        </div>
+      
     </>
   );
 };

@@ -4,7 +4,7 @@ var fetch = require("node-fetch");
 const db = require("./firebase");
 
 const {
-  setDoc, getDocs, collection, doc
+  setDoc, getDocs, getDoc, collection, doc, updateDoc, increment, 
 } = require("firebase/firestore");
 const { async } = require("@firebase/util");
 
@@ -19,6 +19,13 @@ router.post("/userCreation", async (req, res, next) => {
     })
 });
 
+router.post("/isLogged", async (req, res, next) => {
+    console.log(req.query.id);
+    await updateDoc(doc(db, "Users", req.query.id), {
+        isLogged: true,
+    })
+});
+
 router.get("/usernames", async (req, res, next) => {
     const users = [];
     const docs = await getDocs(collection(db, "Users"));
@@ -27,5 +34,58 @@ router.get("/usernames", async (req, res, next) => {
     );
     res.json({ result: users });
 });
+
+router.get("/products", async (req, res, next) => {
+    const products = [];
+    const docs = await getDocs(collection(db, "Products"));
+    docs.forEach((item) =>
+        products.push({ id: item.id, ...item.data() })
+    )
+    res.json({ result: products })
+});
+
+router.get("/productInfo", async (req, res, next) => {
+    const document = await getDoc(doc(db, "Products", req.query.id));
+    res.json({ id: document.id, ...document.data() })
+});
+
+router.put("/like", async (req, res, next) => {
+    await updateDoc(doc(db, "Products", req.body.id), {
+        likes: increment(1)
+    });
+});
+
+router.put("/delike", async (req, res, next) => {
+    await updateDoc(doc(db, "Products", req.body.id), {
+        likes: increment(-1)
+    });
+});
+
+//account
+router.post('/changenumber',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        phoneNumber: req.body.newNumber
+    });
+})
+router.post('/changepassword',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        password: req.body.pass
+    });
+})
+router.post('/changeusername',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        username: req.body.username
+    });
+})
+router.post('/changebday',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        birthday: req.body.newbirthday
+    });
+})
+router.post('/changeaddress',async(req,res,next)=>{
+    await updateDoc(doc(db, "Users", req.query.id), {
+        defaultAddress: req.body.newadd
+    });
+})
 
 module.exports = router;

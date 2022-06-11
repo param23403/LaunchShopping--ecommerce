@@ -1,15 +1,13 @@
-import {React} from "react";
+import {React, useState, useContext} from "react";
 import { Link } from "react-router-dom";
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { AppBar, Box, Toolbar, Button } from '@mui/material';
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../contexts/UserContext";
 import './Navbar.css'
 import logo from '../logow.png'
 const Navbar = (props) => {
      let navigate = useNavigate();
+     const { user, setUser } = useContext(UserContext);
 
     function shoppingOnClick(){
        navigate("/shopping")
@@ -25,30 +23,56 @@ const Navbar = (props) => {
 
 
     function logoutOnClick(){
-      navigate("/")
+        if (localStorage.getItem('priceIDs')) {
+            localStorage.removeItem('priceIDs');
+        }
+        if (localStorage.getItem('price')) {
+            localStorage.removeItem('price');
+        }
+        if (localStorage.getItem('name')) {
+            localStorage.removeItem('name');
+        }
+        setUser("");
+        navigate("/");
     }
     const linkStyle = {
         margin: "1rem",
         textDecoration: "none",
-        color: 'white'
+        color: 'white',
     };
-    
+
+    const [isPage, setPage] = useState(props.ispage);
+
+    const landonclick=()=>{
+        navigate('/')
+    }
+   
     return (
         <>
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar style={{backgroundColor: "#5BAFFF"}}>
-                <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
-                        <Link to='/shopping'style={linkStyle}><Button color="inherit"  onClick={shoppingOnClick}>Shop</Button></Link>
-                        <Link to='/cart'style={linkStyle}><Button color="inherit" onClick={cartOnClick}>Cart</Button></Link>
-                        <Link to ='/account'style={linkStyle}><Button color="inherit" onClick={accountOnClick}>Account</Button></Link>
-                        <Link to='/'style={linkStyle}><Button color="inherit" onClick={logoutOnClick}>Logout</Button></Link>
+                <Toolbar style={{backgroundColor: "#5BAFFF"}} >
+                    <Button onClick={landonclick}>
+                        <img src={logo} style={{ maxWidth: 175, maxHeight: 50, padding: 15}} alt="logo"></img>
+                    </Button>                        
+                    <Link to='/shopping'style={linkStyle}>
+                        <Button color="inherit" style={{backgroundColor: isPage[0] ? "#1F73C3" : "#5BAFFF"}} onClick={shoppingOnClick}>Shop</Button>
+                    </Link>
+                    <Link to='/cart'style={linkStyle}>
+                        <Button color="inherit" style={{backgroundColor: isPage[1] ? "#1F73C3" : "#5BAFFF"}} onClick={cartOnClick}>Cart</Button>
+                    </Link>
+                    <Link to='/account'style={linkStyle}>
+                        <Button color="inherit" style={{backgroundColor: isPage[2] ? "#1F73C3" : "#5BAFFF"}} onClick={accountOnClick}>Account</Button>
+                    </Link>
+                    <Box sx={{ justifyContent: 'flex-end' }}>
+                        <Link to='/'style={linkStyle}>
+                            <Button color="inherit" onClick={logoutOnClick}>Logout</Button>
+                        </Link>
+                    </Box>
                 </Toolbar>
             </AppBar>
         </Box>
         </>
     );
-
 }
-// style={{backgroundColor: ispage[0] ? 'primary' : "inherit"}}
 export default Navbar;
